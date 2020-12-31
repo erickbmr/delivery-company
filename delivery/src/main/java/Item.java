@@ -4,14 +4,20 @@ public class Item
     private boolean ehFragil;
     private double volume;
     private double valor;
+    private int codigo;
     
     public Item(){ }
 
-    public Item(String descricao, boolean ehFragil, double volume, double valor) {
+    public Item(int cod, String descricao, boolean ehFragil, double volume, double valor) {
         this.descricao = descricao;
         this.ehFragil = ehFragil;
         this.volume = volume;
         this.valor = valor;
+        this.codigo = cod;
+    }
+
+    public int getCodigo() {
+        return codigo;
     }
 
     public String getDescricao() {

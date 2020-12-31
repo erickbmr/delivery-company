@@ -62,5 +62,10 @@ public class RequisicaoServico
     }
     
     //comportamentos especificos
+    
+    public void addItem(Item item)
+    {
+        this.itens.add(item);
+    }
 
 }
