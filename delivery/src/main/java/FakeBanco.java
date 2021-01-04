@@ -61,6 +61,11 @@ public class FakeBanco
         destinatarios.add(novoDestinatario);
     }
     
+    public static void inserePlataforma(Plataforma novaPlataforma)
+    {
+        plataformas.add(novaPlataforma);
+    }
+    
     
     
 }

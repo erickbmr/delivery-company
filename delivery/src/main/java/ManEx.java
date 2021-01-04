@@ -117,13 +117,73 @@ public class ManEx
         return true;
     }
     
-    public static void cadastraItem()
+    public static Item cadastraItem()
     {
+        Scanner input = new Scanner(System.in);
+        Item novoItem = null;
         
+        try
+        {
+            System.out.print("Insira o código do item: ");
+            int codigo = input.nextInt();
+
+            System.out.print("O item é frágil? (1)Sim (2)Não\nOpção: ");
+            int fragil = input.nextInt();
+
+            while(fragil < 1 || fragil > 2)
+            {
+                System.out.print("O item é frágil? (1)Sim (2)Não\nOpção: ");
+                fragil = input.nextInt();
+            }
+
+            boolean ehFragil;
+
+            if(fragil == 1) ehFragil = true;
+            else ehFragil = false;
+
+            System.out.print("Insira o volume do produto: ");
+            double volume = input.nextDouble();
+
+            System.out.print("Insira o valor do produto: ");
+            double valor = input.nextDouble();
+
+            input.skip("\n");
+            
+            System.out.println("Insira a descricao desse produto: ");
+            String descricao = input.nextLine();
+
+            novoItem = new Item(codigo, descricao, ehFragil, volume, valor);
+            
+            if(!descricao.isEmpty()) FakeBanco.insereItem(novoItem);
+            else System.err.println("O campo de descricao deve ser preenchido");
+            
+            return novoItem;
+        }
+        catch(InputMismatchException ex)
+        {
+            System.err.println("O código, volume e valor devem ser numéricos.");
+        }
+        
+        return null;
     }
     
     public static Plataforma cadastraPlataforma()
     {
+        Scanner input = new Scanner(System.in);
+        Plataforma novaPlataforma = null;
+        
+        try
+        {
+            //TODO
+            
+            FakeBanco.inserePlataforma(novaPlataforma);
+            
+            return novaPlataforma;
+        }
+        catch(InputMismatchException ex)
+        {
+            System.err.println("");
+        }
         
         return null;
     }
@@ -150,21 +210,18 @@ public class ManEx
 
             System.out.print("Insira a rua do destinatario: ");
             String rua = input.nextLine();
-            input.skip("\n");
 
             System.out.print("Insira o cep do destinatario: ");
             String cep = input.nextLine();
 
             System.out.print("Insira o bairro do destinatario: ");
             String bairro = input.nextLine();
-            input.skip("\n");
 
             System.out.print("Insira o estado do destinatario: ");
             String estado = input.nextLine();
 
             System.out.print("Insira o telefone do destinatario: ");
             String telefone = input.nextLine();
-            input.skip("\n");
 
             while(!(telefone.length() >= 8 
                     && telefone.length() <= 13 
@@ -181,8 +238,11 @@ public class ManEx
                     nome, documento, rua, cep, bairro, estado, telefone, numero
             );
 
-            FakeBanco.insereDestinatario(novoDestinatario);
-
+            if(!nome.isEmpty() && !documento.isEmpty() && !rua.isEmpty()
+                    && !cep.isEmpty() && !bairro.isEmpty() && !estado.isEmpty())
+                FakeBanco.insereDestinatario(novoDestinatario);
+            else System.err.println("Todos os campos devem ser preenchidos.");
+            
             return novoDestinatario;
 
         }
@@ -209,9 +269,9 @@ public class ManEx
     {
         Scanner input = new Scanner(System.in);
         
-        RequisicaoServico novaRequisicao = new RequisicaoServico();
+        //RequisicaoServico novaRequisicao = new RequisicaoServico();
         
-        System.out.print("Insira o seu CNPJ: ");
+        System.out.print("Para começar, insira o seu CNPJ: ");
         String cnpj = input.nextLine();
         
         while(!(cnpj.length() == 14 
@@ -229,61 +289,58 @@ public class ManEx
             System.out.println("Plataforma não cadastrada. Cadastre para continuar.");
             plataforma = cadastraPlataforma();
         }
+
+        System.out.print("Insira o CPF do destinatario: ");
+        String cpf = input.nextLine();
         
-        System.out.println("(1)Usar destinatario existente.\n(2)Cadastrar novo destinatario.");
-        System.out.print("Opção: ");
-        int opcao = input.nextInt();
-
-        while(opcao > 2 || opcao < 1)
+        while(!(cpf.length() == 11 
+                    && cpf.matches("[0-9]+")
+                    && ehCPF(cpf)))
         {
-            System.out.println("Opção inválida. (1)Destinatario existente\n(2)Cadastrar destinatario.");
-            System.out.print("Opção: ");
-            opcao = input.nextInt();
+            System.out.print("O documento deve conter 11 numeros e deve ser valido: ");
+            cpf = input.nextLine();
         }
-
-        input.skip("\n");
-
-        if(opcao == 1)
-        {
-            //destinatario existente
-            System.out.print("Insira o documento do destinatario: ");
-            String documento = input.nextLine();
-
-            while(!(documento.length() == 11 
-                && documento.matches("[0-9]+")
-                && ehCPF(documento)))
-            {
-                System.out.print("O documento deve conter 11 numeros e deve ser valido: ");
-                documento = input.nextLine();
-            }
-
-            Destinatario destinatario = FakeBanco.recuperaDestinatario(documento);
-
-            if(destinatario == null)
-            {
-                System.out.println("Destinatario não cadastrado. Cadastre para continuar.");
-                destinatario = cadastraDestinatario();
-            }
-        }
-        else
-        {
-            //cadastro de destinatario
-            Destinatario destinatario = cadastraDestinatario();
-        }
-
-        //realizar adicao de itens no servico
         
+        Destinatario destinatario = FakeBanco.recuperaDestinatario(cpf);
+        
+        if(destinatario == null)
+        {
+            System.out.println("Destinatario não encontrado, cadastre para continuar.");
+            destinatario = cadastraDestinatario();
+        }
+        
+        RequisicaoServico novaRequisicao = new RequisicaoServico(destinatario, plataforma);
+        
+        //realizar adicao de itens na requisicao de servico
+        String opcao = "y";
+        while(opcao.equalsIgnoreCase("y"))
+        {
+            System.out.println("Adicione os itens...");
+            novaRequisicao.addItem(cadastraItem());
+            System.out.print("Deseja adicionar outro item ? y/n: ");
+            opcao = input.nextLine();
+            if(!(opcao.equalsIgnoreCase("y") || opcao.equalsIgnoreCase("n")))
+            {
+                System.out.print("Opção inválida. \nDeseja adicionar outro item? y/n: ");
+                opcao = input.nextLine();
+            }
+        }
+
         //inserir a requisicao no banco
         
     }
     
     public static void main(String[] args) 
     {
-        //FakeBanco.carregarInfo();
+        FakeBanco.carregarInfo();
         
-        //cadastraRequisicaoServico();
+        cadastraRequisicaoServico();
         
         //if(ehCNPJ("02391962000144")) System.out.println("true");
         //else System.out.println("false");
+        
+        //RequisicaoServico novaRequisicao = new RequisicaoServico();
+        //novaRequisicao.setDataLimite(5);
+
     }
 }

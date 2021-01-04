@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
@@ -15,18 +16,21 @@ public class RequisicaoServico
     { 
         this.dataRequisicao = new Date();
         this.dataAgendada = null;
+        this.funcionario = null;
         this.itens = new Vector<>();
+        this.dataLimite = null;
     }
 
-    public RequisicaoServico(Destinatario destinatario, Plataforma plataforma, 
-            Funcionario funcionario, Date dataLimite, Date dataAgendada) 
+    public RequisicaoServico(Destinatario destinatario, Plataforma plataforma) 
     {
         this.destinatario = destinatario;
         this.plataforma = plataforma;
-        this.funcionario = funcionario;
-        this.dataLimite = dataLimite;
+        
+        this.funcionario = null;
+        this.dataLimite = null;
         this.dataRequisicao = new Date();
-        this.dataAgendada = dataAgendada;
+        this.dataAgendada = null;
+        this.itens = new Vector<>();
     }
 
     public Destinatario getDestinatario() {
@@ -59,6 +63,16 @@ public class RequisicaoServico
 
     public void setDataAgendada(Date dataAgendada) {
         this.dataAgendada = dataAgendada;
+    }
+    
+    public void setDataLimite(int dias)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.dataRequisicao);
+        //2 dias para descontar sábado e domingo
+        calendar.add(Calendar.DATE, dias + 2);
+        
+        this.dataLimite = calendar.getTime();
     }
     
     //comportamentos especificos
