@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class FastEx 
+public class ManEx 
 {   
     public static int[] converteStringVetorInt(String string)
     {
