@@ -81,5 +81,38 @@ public class RequisicaoServico
     {
         this.itens.add(item);
     }
+    
+    public void printInfo()
+    {
+        System.out.println("----------------Requisicao de Servico----------------\n");
+        System.out.println("\nPlataforma: " + this.plataforma.getNome() + 
+                "\nCNPJ: " + this.plataforma.getDocumento());
+        System.out.println("Contato: " + this.plataforma.getTelefone() + "\n");
+        
+        System.out.println("\nDestinatario: " + this.destinatario.getNome() 
+                + "\nDoc.: " + this.destinatario.getDocumento());
+        System.out.print("Contato: " + this.destinatario.getTelefone());
+        System.out.println("Endereço: Rua " + this.destinatario.getRua() +
+                " n." + this.destinatario.getNumero() + "\nBairro " + this.destinatario.getBairro());
+        System.out.println("CEP: " + this.destinatario.getCep());
+        
+        System.out.println("\n-----------------------Itens----------------------");
+        
+        for(Item i: this.itens)
+        {
+            
+            System.out.print(i.getCodigo() + "| " + i.getDescricao() + 
+                    "\t| Volume: " + i.getVolume());
+            
+            if(i.ehFragil())
+                System.out.println("\t| Frágil: Sim\n");
+            else
+                System.out.println("\t| Frágil: Não\n");
+
+        }
+        
+        System.out.println("--------------------------------------------\n");
+
+    }
 
 }

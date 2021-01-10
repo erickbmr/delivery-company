@@ -19,7 +19,9 @@ public class FakeBanco
         veiculos.add(new Veiculo("5345345534", "CBA1D55", "Preto", 80));
         veiculos.add(new Veiculo("5345345534", "ABC1D45", "Prata", 50));
         depositos.add(new Deposito("Brasil", "Centro", "36400000", "MG", 20, 3000));
-        plataformas.add(new Plataforma("Americanas", "1", "E-commerce", "55567676"));
+        plataformas.add(new Plataforma("Americanas", "02391962000144", "E-commerce", "55567676"));
+        destinatarios.add(new Destinatario("Erick", "80735747059", "Sete", "36400000",
+            "Alto", "MG", "12345678", 10));
         //itens.add(new Item(1, "Kindle 10g", true, 5, 279.9));
         //itens.add(new Item(2, "Mi band 4", true, 3, 189.9));
     }

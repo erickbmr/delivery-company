@@ -25,7 +25,7 @@ public class ManEx
     {
         int[] cnpj = converteStringVetorInt(documento);
         
-        int soma = 0, index = 0, inicio = 0, multiplicador = 5;
+        int soma = 0, inicio = 0, multiplicador = 5;
         
         for(int j = 0; j < 2; j++)
         {
@@ -74,9 +74,7 @@ public class ManEx
         if(resto <= 1) possivelDigito = 0;       
         else possivelDigito = 11 - resto;
         
-        if(!(possivelDigito == cnpj[cnpj.length - 1])) return false;
-        
-        return true;
+        return possivelDigito == cnpj[cnpj.length - 1];
     }
     
     public static boolean ehCPF(String documento)
@@ -112,9 +110,7 @@ public class ManEx
         if(resto <= 1) possivelDigito = 0;
         else possivelDigito = 11 - resto;
         
-        if(!(possivelDigito == cpf[cpf.length - 1])) return false;
-        
-        return true;
+        return possivelDigito == cpf[cpf.length - 1];
     }
     
     public static Item cadastraItem()
@@ -132,7 +128,7 @@ public class ManEx
 
             while(fragil < 1 || fragil > 2)
             {
-                System.out.print("O item é frágil? (1)Sim (2)Não\nOpção: ");
+                System.out.print("Inválido!\nO item é frágil? (1)Sim (2)Não\nOpção: ");
                 fragil = input.nextInt();
             }
 
@@ -149,7 +145,7 @@ public class ManEx
 
             input.skip("\n");
             
-            System.out.println("Insira a descricao desse produto: ");
+            System.out.print("Insira a descricao desse produto: ");
             String descricao = input.nextLine();
 
             novoItem = new Item(codigo, descricao, ehFragil, volume, valor);
@@ -169,7 +165,7 @@ public class ManEx
     
     public static Plataforma cadastraPlataforma()
     {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         Plataforma novaPlataforma = null;
         
         try
@@ -244,12 +240,10 @@ public class ManEx
             else System.err.println("Todos os campos devem ser preenchidos.");
             
             return novoDestinatario;
-
         }
         catch(InputMismatchException ex)
         {
             System.err.println("O numero da casa é invalido.");
-            input = new Scanner(System.in);
         }
         
         return null;
@@ -269,9 +263,8 @@ public class ManEx
     {
         Scanner input = new Scanner(System.in);
         
-        //RequisicaoServico novaRequisicao = new RequisicaoServico();
-        
         System.out.print("Para começar, insira o seu CNPJ: ");
+        
         String cnpj = input.nextLine();
         
         while(!(cnpj.length() == 14 
@@ -289,6 +282,8 @@ public class ManEx
             System.out.println("Plataforma não cadastrada. Cadastre para continuar.");
             plataforma = cadastraPlataforma();
         }
+        
+        System.out.println("\nPlataforma: " + plataforma.getNome() + "\n");
 
         System.out.print("Insira o CPF do destinatario: ");
         String cpf = input.nextLine();
@@ -309,13 +304,15 @@ public class ManEx
             destinatario = cadastraDestinatario();
         }
         
+        System.out.println("\nDestinatario: " + destinatario.getNome() + "\n");
+        
         RequisicaoServico novaRequisicao = new RequisicaoServico(destinatario, plataforma);
         
         //realizar adicao de itens na requisicao de servico
         String opcao = "y";
+        System.out.println("Adicione os itens...");
         while(opcao.equalsIgnoreCase("y"))
         {
-            System.out.println("Adicione os itens...");
             novaRequisicao.addItem(cadastraItem());
             System.out.print("Deseja adicionar outro item ? y/n: ");
             opcao = input.nextLine();
@@ -327,7 +324,10 @@ public class ManEx
         }
 
         //inserir a requisicao no banco
+        FakeBanco.insereRequisicaoServico(novaRequisicao);
         
+        novaRequisicao.printInfo();
+    
     }
     
     public static void main(String[] args) 
