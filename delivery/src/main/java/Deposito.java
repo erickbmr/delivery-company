@@ -8,6 +8,7 @@ public class Deposito
     private String cep;
     private String estado;
     private int numero;
+    private int codigo;
     private double capacidadeTotal;
     private double capacidadeRestante;
     private Vector<Item> itens;
@@ -18,7 +19,9 @@ public class Deposito
        this.capacidadeRestante = this.capacidadeTotal;
     }
 
-    public Deposito(String rua, String bairro, String cep, String estado, int numero, double capacidadeTotal) {
+    public Deposito(String rua, String bairro, String cep, String estado, 
+                        int numero, double capacidadeTotal, int codigo) 
+    {
         this.rua = rua;
         this.bairro = bairro;
         this.cep = cep;
@@ -27,6 +30,7 @@ public class Deposito
         this.capacidadeTotal = capacidadeTotal;
         this.capacidadeRestante = capacidadeTotal;
         this.itens = new Vector<>();
+        this.codigo = codigo;
     }
 
     public double getCapacidadeRestante() {
@@ -56,10 +60,39 @@ public class Deposito
     public double getCapacidadeTotal() {
         return this.capacidadeTotal;
     }
+    
+    public int getCodigo(){
+        return this.codigo;
+    }
 
     public void setCapacidadeTotal(double capacidadeTotal) {
         this.capacidadeTotal = capacidadeTotal;
     }
     
+    public void setItens(Vector<Item> itens)
+    {
+        this.itens = itens;
+    }
+    
     //comportamentos especificos
+    public void addItem(Item item)
+    {
+        this.itens.add(item);
+        this.capacidadeRestante -= item.getVolume();
+    }
+    
+    public Item retiraItem(int codigo)
+    {
+        int index = 0;
+        
+        for(Item i: this.itens)
+        {
+            if(i.getCodigo() == codigo)
+                return this.itens.remove(index);
+            
+            index++;
+        }
+        
+        return null;
+    }
 }
