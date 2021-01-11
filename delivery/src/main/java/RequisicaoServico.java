@@ -11,6 +11,7 @@ public class RequisicaoServico
     private Date dataRequisicao;
     private Date dataAgendada;
     private Vector<Item> itens;
+    private int codigo;
     
     public RequisicaoServico()
     { 
@@ -21,10 +22,11 @@ public class RequisicaoServico
         this.dataLimite = null;
     }
 
-    public RequisicaoServico(Destinatario destinatario, Plataforma plataforma) 
+    public RequisicaoServico(Destinatario destinatario, Plataforma plataforma, int codigo) 
     {
         this.destinatario = destinatario;
         this.plataforma = plataforma;
+        this.codigo = codigo;
         
         this.funcionario = null;
         this.dataLimite = null;
@@ -55,6 +57,14 @@ public class RequisicaoServico
 
     public Date getDataAgendada() {
         return this.dataAgendada;
+    }
+    
+    public Vector<Item> getItens(){
+        return this.itens;
+    }
+    
+    public int getCodigo(){
+        return this.codigo;
     }
 
     public void setFuncionario(Funcionario funcionario) {
@@ -91,7 +101,7 @@ public class RequisicaoServico
         
         System.out.println("\nDestinatario: " + this.destinatario.getNome() 
                 + "\nDoc.: " + this.destinatario.getDocumento());
-        System.out.print("Contato: " + this.destinatario.getTelefone());
+        System.out.println("Contato: " + this.destinatario.getTelefone());
         System.out.println("Endereço: Rua " + this.destinatario.getRua() +
                 " n." + this.destinatario.getNumero() + "\nBairro " + this.destinatario.getBairro());
         System.out.println("CEP: " + this.destinatario.getCep());
