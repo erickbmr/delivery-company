@@ -259,6 +259,12 @@ public class ManEx
         
     }
     
+    public static Deposito cadastraDeposito()
+    {
+        
+        return null;
+    }
+    
     public static void cadastraRequisicaoServico()
     {
         Scanner input = new Scanner(System.in);
@@ -306,14 +312,32 @@ public class ManEx
         
         System.out.println("\nDestinatario: " + destinatario.getNome() + "\n");
         
-        RequisicaoServico novaRequisicao = new RequisicaoServico(destinatario, plataforma);
+        RequisicaoServico novaRequisicao = new RequisicaoServico(destinatario, plataforma, 1);
+        
+        //escolha do deposito para postagem
+        System.out.println("\nDepositos disponiveis para postagem: \n");
+        FakeBanco.listarDepositos();
+        
+        System.out.println("Insira o codigo do deposito escolhido: ");
+        int codigo = input.nextInt();
+        
+        Deposito deposito = FakeBanco.recuperaDesposito(codigo);
+        
+        if(deposito == null)
+        {
+            System.out.println("Deposito não encontrado, cadastre para continuar.\n");
+            deposito = cadastraDeposito();
+        }
         
         //realizar adicao de itens na requisicao de servico
+        Item item;
         String opcao = "y";
         System.out.println("Adicione os itens...");
         while(opcao.equalsIgnoreCase("y"))
         {
-            novaRequisicao.addItem(cadastraItem());
+            item = cadastraItem();
+            novaRequisicao.addItem(item);
+            deposito.addItem(item);
             System.out.print("Deseja adicionar outro item ? y/n: ");
             opcao = input.nextLine();
             if(!(opcao.equalsIgnoreCase("y") || opcao.equalsIgnoreCase("n")))
@@ -321,8 +345,10 @@ public class ManEx
                 System.out.print("Opção inválida. \nDeseja adicionar outro item? y/n: ");
                 opcao = input.nextLine();
             }
+            
+            item = null;
         }
-
+        
         //inserir a requisicao no banco
         FakeBanco.insereRequisicaoServico(novaRequisicao);
         
@@ -335,6 +361,15 @@ public class ManEx
         FakeBanco.carregarInfo();
         
         cadastraRequisicaoServico();
+        
+        //implementar menu com:
+        /*
+            cadastrar servico e escolher deposito(ready)
+            listar servicos em aberto;
+            listar funcionarios disponiveis;
+            atribuir funcionario a um servico;
+        */
+        
         
         //if(ehCNPJ("02391962000144")) System.out.println("true");
         //else System.out.println("false");
