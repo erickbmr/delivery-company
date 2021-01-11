@@ -3,6 +3,7 @@ public class Funcionario
     private String nome;
     private String documento;
     private String telefone;
+    private boolean disponivel;
     
     public Funcionario(){ }
     
@@ -19,6 +20,8 @@ public class Funcionario
     
     public String getTelefone() { return this.telefone; }    
    
+    public boolean estaDisponivel(){ return this.disponivel; }
+    
     public void setNome(String nome)
     {
         this.nome = nome;
@@ -27,6 +30,11 @@ public class Funcionario
     public void setTelefone(String telefone)
     {
         this.telefone = telefone;
+    }
+    
+    public void setDisponibilidade(boolean disponivel)
+    {
+        this.disponivel = disponivel;
     }
     
     //comportamentos especificos
