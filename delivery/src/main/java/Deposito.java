@@ -75,22 +75,37 @@ public class Deposito
     }
     
     //comportamentos especificos
-    public void addItem(Item item)
+    public boolean addItem(Item item)
     {
-        this.itens.add(item);
-        this.capacidadeRestante -= item.getVolume();
+        double volumeItem = item.getVolume();
+        
+        if(this.capacidadeRestante > volumeItem)
+        {
+            this.itens.add(item);
+            this.capacidadeRestante -= volumeItem;
+            return true;
+        }
+        else
+            return false;
     }
     
     public Item retiraItem(int codigo)
     {
-        int index = 0;
-        
-        for(Item i: this.itens)
+        if(this.capacidadeRestante != this.capacidadeTotal)
         {
-            if(i.getCodigo() == codigo)
-                return this.itens.remove(index);
-            
-            index++;
+            int index = 0;
+        
+            for(Item i: this.itens)
+            {
+                if(i.getCodigo() == codigo)
+                    return this.itens.remove(index);
+
+                index++;
+            }
+        }
+        else
+        {
+            System.err.println("Depósito vazio!");
         }
         
         return null;

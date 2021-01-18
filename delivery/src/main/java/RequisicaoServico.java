@@ -79,6 +79,7 @@ public class RequisicaoServico
     {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(this.dataRequisicao);
+        
         //2 dias para descontar sábado e domingo
         calendar.add(Calendar.DATE, dias + 2);
         
@@ -99,6 +100,8 @@ public class RequisicaoServico
                 "\nCNPJ: " + this.plataforma.getDocumento());
         System.out.println("Contato: " + this.plataforma.getTelefone() + "\n");
         
+        System.out.println("Dia limite para entrega: " + this.dataLimite);
+        
         System.out.println("\nDestinatario: " + this.destinatario.getNome() 
                 + "\nDoc.: " + this.destinatario.getDocumento());
         System.out.println("Contato: " + this.destinatario.getTelefone());
@@ -110,7 +113,6 @@ public class RequisicaoServico
         
         for(Item i: this.itens)
         {
-            
             System.out.print(i.getCodigo() + "| " + i.getDescricao() + 
                     "\t| Volume: " + i.getVolume());
             
@@ -118,7 +120,6 @@ public class RequisicaoServico
                 System.out.println("\t| Frágil: Sim\n");
             else
                 System.out.println("\t| Frágil: Não\n");
-
         }
         
         System.out.println("--------------------------------------------\n");

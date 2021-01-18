@@ -229,15 +229,22 @@ public class ManEx
             
             System.out.print("Insira o numero do destinatario: ");
             int numero = input.nextInt();
-
-            Destinatario novoDestinatario = new Destinatario(
-                    nome, documento, rua, cep, bairro, estado, telefone, numero
-            );
-
+            
+            Destinatario novoDestinatario = null;
+            
             if(!nome.isEmpty() && !documento.isEmpty() && !rua.isEmpty()
-                    && !cep.isEmpty() && !bairro.isEmpty() && !estado.isEmpty())
+               && !cep.isEmpty() && !bairro.isEmpty() && !estado.isEmpty())
+            {
+                novoDestinatario = new Destinatario(
+                    nome, documento, rua, cep, bairro, estado, telefone, numero);
+
                 FakeBanco.insereDestinatario(novoDestinatario);
-            else System.err.println("Todos os campos devem ser preenchidos.");
+            }
+            else
+            {
+                System.err.println("Todos os campos devem ser preenchidos.");
+                System.exit(1);
+            }
             
             return novoDestinatario;
         }
@@ -261,6 +268,56 @@ public class ManEx
     
     public static Deposito cadastraDeposito()
     {
+        Scanner input = new Scanner(System.in);
+        
+        try
+        {
+            System.out.print("Cadastro de depósito\nInsira a rua: ");
+            String rua = input.nextLine();
+
+            System.out.print("Insira o bairro: ");
+            String bairro = input.nextLine();
+
+            System.out.print("Insira o número: ");
+            int numero = input.nextInt();
+
+            input.skip("\n");
+
+            System.out.print("Insira o CEP: ");
+            String cep = input.nextLine();
+
+            System.out.print("Insira o Estado: ");
+            String estado = input.nextLine();
+
+            System.out.print("Insira a capacidade total do depósito: ");
+            double capacidade = input.nextDouble();
+
+            System.out.print("Insira um código de identificação: ");
+            int codigo = input.nextInt();
+
+            Deposito novoDeposito = null;
+            
+            if(!rua.isEmpty() && !cep.isEmpty() && !bairro.isEmpty() 
+                && !estado.isEmpty())
+            {
+                novoDeposito = new Deposito(rua, bairro, cep, estado, numero, 
+                        capacidade, codigo);
+                
+                FakeBanco.insereDeposito(novoDeposito);
+            }
+            else
+            {
+                System.err.println("Todos os campos devem ser preenchidos!");
+                System.exit(1);
+            }
+                
+            return novoDeposito;
+
+        }
+        catch(InputMismatchException ex)
+        {
+            System.err.println("Os valores de numero, capacidade e código devem ser numéricos.");
+        }
         
         return null;
     }
@@ -318,7 +375,7 @@ public class ManEx
         System.out.println("\nDepositos disponiveis para postagem: \n");
         FakeBanco.listarDepositos();
         
-        System.out.println("Insira o codigo do deposito escolhido: ");
+        System.out.print("Insira o codigo do deposito escolhido: ");
         int codigo = input.nextInt();
         
         Deposito deposito = FakeBanco.recuperaDesposito(codigo);
@@ -336,8 +393,17 @@ public class ManEx
         while(opcao.equalsIgnoreCase("y"))
         {
             item = cadastraItem();
-            novaRequisicao.addItem(item);
-            deposito.addItem(item);
+            
+            if(deposito.addItem(item))
+            {
+                novaRequisicao.addItem(item);
+            }
+            else
+            {
+                System.err.println("Espaço insuficiente no deposito!");
+                System.exit(1);
+            }
+            
             System.out.print("Deseja adicionar outro item ? y/n: ");
             opcao = input.nextLine();
             if(!(opcao.equalsIgnoreCase("y") || opcao.equalsIgnoreCase("n")))
@@ -349,6 +415,11 @@ public class ManEx
             item = null;
         }
         
+        System.out.print("Insira o número máximo de dias para realização da entrega: ");
+        int dias = input.nextInt();
+        
+        novaRequisicao.setDataLimite(dias);
+        
         //inserir a requisicao no banco
         FakeBanco.insereRequisicaoServico(novaRequisicao);
         
@@ -356,11 +427,23 @@ public class ManEx
     
     }
     
+    public static boolean enviarRequisicao(RequisicaoServico servico)
+    {
+        if(servico.getFuncionario() == null)
+        {
+            System.out.println("Nenhum funcionario atribuído. Atribua para continuar!");
+        }
+        
+        return false;
+    }
+    
     public static void main(String[] args) 
     {
         FakeBanco.carregarInfo();
         
         cadastraRequisicaoServico();
+        
+        
         
         //implementar menu com:
         /*

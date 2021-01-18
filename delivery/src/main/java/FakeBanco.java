@@ -19,6 +19,7 @@ public class FakeBanco
         veiculos.add(new Veiculo("5345345534", "CBA1D55", "Preto", 80));
         veiculos.add(new Veiculo("5345345534", "ABC1D45", "Prata", 50));
         depositos.add(new Deposito("Brasil", "Centro", "36400000", "MG", 20, 3000, 1212));
+        depositos.add(new Deposito("Ecuador", "América", "36420000", "MG", 2, 4000, 1312));
         plataformas.add(new Plataforma("Americanas", "02391962000144", "E-commerce", "55567676"));
         destinatarios.add(new Destinatario("Erick", "80735747059", "Sete", "36400000",
             "Alto", "MG", "12345678", 10));
@@ -110,9 +111,9 @@ public class FakeBanco
         for(Deposito d: depositos)
         {
             System.out.println("Cod. Deposito: " + d.getCodigo());
-            System.out.println("Rua " + d.getRua() + "n." + d.getNumero() 
+            System.out.print("Rua " + d.getRua() + " n." + d.getNumero() 
                     + "\nBairro " + d.getBairro() + " | CEP " + d.getCep());
-            System.out.println(d.getEstado() + "\n");
+            System.out.println(" | " + d.getEstado() + "\n");
         }
     }
     
