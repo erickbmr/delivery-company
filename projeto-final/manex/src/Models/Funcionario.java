@@ -17,6 +17,10 @@ public class Funcionario
         return this.nome;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCnh() {
         return this.cnh;
     }

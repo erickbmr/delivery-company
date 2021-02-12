@@ -17,6 +17,22 @@ public class Deposito
     {
         this.capacidadeRestante = this.capacidadeTotal;
     }
+
+    public Deposito(String rua, String bairro, int numero, String cep, String estado, double capacidadeTotal) 
+    {
+        this.rua = rua;
+        this.bairro = bairro;
+        this.numero = numero;
+        this.cep = cep;
+        this.estado = estado;
+        this.capacidadeTotal = capacidadeTotal;
+        this.capacidadeRestante = this.capacidadeTotal;
+
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public String getRua() {
         return this.rua;

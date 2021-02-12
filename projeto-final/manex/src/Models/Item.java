@@ -18,6 +18,10 @@ public class Item
         this.valorFrete = valorFrete;
     }
 
+    public boolean isFragil() {
+        return ehFragil;
+    }
+
     public String getDescricao() {
         return this.descricao;
     }

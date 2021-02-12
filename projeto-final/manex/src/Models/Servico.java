@@ -21,6 +21,10 @@ public class Servico
         this.dataCadastro = new Date();
         this.dataAgendada = null;
     }
+
+    public int getPrazoEmDias() {
+        return prazoEmDias;
+    }
     
     public Destinatario getDestinatario() {
         return destinatario;

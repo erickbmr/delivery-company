@@ -17,6 +17,10 @@ public class PlataformaCliente
         return this.nome;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getDocumento() {
         return this.documento;
     }
