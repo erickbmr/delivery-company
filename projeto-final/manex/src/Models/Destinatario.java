@@ -17,6 +17,21 @@ public class Destinatario
         
     }
 
+    public Destinatario(String nome, String documento, String rua, String cep, 
+            String bairro, String estado, String telefone, int numero) 
+    {
+        this.nome = nome;
+        this.documento = documento;
+        this.rua = rua;
+        this.cep = cep;
+        this.bairro = bairro;
+        this.estado = estado;
+        this.telefone = telefone;
+        this.numero = numero;
+    }
+    
+    
+
     public void setDocumento(String documento) {
         this.documento = documento;
     }

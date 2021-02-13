@@ -40,6 +40,14 @@ public class Funcionario
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
+    }
     
     
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class DestinatarioDAO 
 {
-    private String nomeTabela = "destinatario";
+    private final String nomeTabela = "destinatario";
     
     public DestinatarioDAO()
     {
@@ -158,7 +158,7 @@ public class DestinatarioDAO
         return null;
     }
     
-    public ArrayList<Destinatario> getLista()
+    public ArrayList<Destinatario> getAll()
     {
         ArrayList<Destinatario> destinatarios = new ArrayList<>();
         Destinatario destinatario = null;
@@ -197,7 +197,7 @@ public class DestinatarioDAO
         return null;
     }
 
-    public int getId(Destinatario d, Connection connection)
+    private int getId(Destinatario d, Connection connection)
     {
         try
         {
@@ -209,10 +209,45 @@ public class DestinatarioDAO
             statement.setString(1, d.getNome());
             statement.setString(2, d.getDocumento());
             statement.setString(3, d.getRua());
-            statement.setString(3, d.getBairro());
-            statement.setString(3, d.getCep());
-            statement.setString(3, d.getEstado());
-            statement.setInt(3, d.getNumero());
+            statement.setString(4, d.getBairro());
+            statement.setString(5, d.getCep());
+            statement.setString(6, d.getEstado());
+            statement.setInt(7, d.getNumero());
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            int id = -1;
+            
+            while(result.next())
+                id = result.getInt("id");
+            
+            return id;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        
+        return -1;
+    }
+    
+    public int getId(Destinatario d)
+    {
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
+                    + "nome = ? AND documento = ? AND rua = ? AND bairro = ? "
+                    + "AND cep = ? AND estado = ? AND numero = ?)";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, d.getNome());
+            statement.setString(2, d.getDocumento());
+            statement.setString(3, d.getRua());
+            statement.setString(4, d.getBairro());
+            statement.setString(5, d.getCep());
+            statement.setString(6, d.getEstado());
+            statement.setInt(7, d.getNumero());
             
             statement.execute();
             

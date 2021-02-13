@@ -1,59 +1,217 @@
 package DAO;
 import Models.Funcionario;
-import java.util.List;
+import Data.ConnectionDB;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class FuncionarioDAO 
 {
+    private final String nomeTabela = "funcionario";
     public FuncionarioDAO()
     {
-        //conexão com o banco
+        //TODO: test
     }
     
-    public void inserir(Funcionario f)
+    public boolean inserir(Funcionario f)
     {
-        //insert
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?, ?)";
+
+            PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, f.getNome());
+            statement.setString(2, f.getCnh());
+            statement.setString(3, f.getTelefone());
+            statement.setBoolean(4, f.isDisponivel());
+
+            int affectedRows = statement.executeUpdate();
+
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+
+        return false;
     }
     
     //Remover
-    public Funcionario remover(Funcionario f)
+    public boolean remover(Funcionario f)
     {
-        //delete
-        return null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "DELETE FROM " + this.nomeTabela + " WHERE id = ?";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            int id = this.getId(f, connection);
+
+            if(id > 0)
+                statement.setLong(1, id);
+            else
+                return false;
+
+            int affectedRows = statement.executeUpdate();
+
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
     
-    public Funcionario remover(int id)
+    public boolean remover(int id)
     {
-        //delete
-        return null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "DELETE FROM " + this.nomeTabela + " WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            
+            int affectedRows = statement.executeUpdate();
+            
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
     
     //Editar
-    public void editar(Funcionario f)
+    public boolean editar(Funcionario f, int id)
     {
-        //update
-    }
-    
-    public void editar(int id)
-    {
-        //update
-    }
-    
-    //Get unico ou lista
-    public Funcionario get(Funcionario f)
-    {
-        //select where
-        return null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "UPDATE " + this.nomeTabela + " SET nome = ?, documento = ?, telefone = ?, disponivel = ? " +
+            "WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            
+            statement.setString(1, f.getNome());
+            statement.setString(2, f.getCnh());
+            statement.setString(3, f.getTelefone());
+            statement.setBoolean(4, f.isDisponivel());
+            statement.setInt(5, id);
+
+            int affectedRows = statement.executeUpdate();
+
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
     
     public Funcionario get(int id)
     {
-        //select where id
+        Funcionario funcionario = null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT * FROM " + this.nomeTabela + "WHERE id = ?";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+
+            statement.execute();
+
+            ResultSet result = statement.getResultSet();
+
+            result.next();
+            funcionario = new Funcionario();
+            funcionario.setId(result.getInt("id"));
+            funcionario.setNome(result.getString("nome"));
+            funcionario.setCnh(result.getString("documento"));
+            funcionario.setTelefone(result.getString("telefone"));
+            funcionario.setDisponivel(result.getBoolean("disponivel"));
+
+            return funcionario;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
         return null;
     }
     
-    public List<Funcionario> getLista()
+    public ArrayList<Funcionario> getAll()
     {
-        //select *
+        ArrayList<Funcionario> funcionarios = new ArrayList<>();
+        Funcionario funcionario = null;
+
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT * FROM " + this.nomeTabela;
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            
+            statement.execute();
+
+            ResultSet result = statement.getResultSet();
+
+            while(result.next())
+            {
+                funcionario = new Funcionario();
+                funcionario.id = result.getInt("id");
+                funcionario.setNome(result.getString("nome"));
+                funcionario.setCnh(result.getString("documento"));
+                funcionario.setTelefone(result.getString("telefone"));
+                funcionario.setDisponivel(result.getBoolean("disponivel"));
+                funcionarios.add(funcionario);
+            }
+
+            if(!funcionarios.isEmpty())
+                return funcionarios;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
         return null;
+    }
+    
+    public int getId(Funcionario f, Connection connection)
+    {
+        try
+        {
+            String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
+                    + "nome = ?, documento = ?, telefone = ?, disponivel = ?)";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, f.getNome());
+            statement.setString(2, f.getCnh());
+            statement.setString(3, f.getTelefone());
+            statement.setBoolean(4, f.isDisponivel());
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            
+            int id = -1;
+            while(result.next())
+                id = result.getInt("id");
+            
+            return id;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return -1;
+    }
+
+    private boolean affectARow(int affectedRows)
+    {
+        return affectedRows > 0;
     }
 }
