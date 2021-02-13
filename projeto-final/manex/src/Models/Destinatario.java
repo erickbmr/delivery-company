@@ -16,6 +16,10 @@ public class Destinatario
     {
         
     }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
     
     public String getNome() {
         return this.nome;

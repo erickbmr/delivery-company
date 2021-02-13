@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class DepositoDAO 
 {
-    //private Connection connection;
-    private final String nomeTabelaDeposito = "deposito";
+    private final String nomeTabela = "deposito";
+    
     public DepositoDAO()
     {
         
@@ -21,7 +21,7 @@ public class DepositoDAO
     {
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "INSERT INTO " + this.nomeTabelaDeposito + " VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO " + this.nomeTabela + " VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
             
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, d.getRua());
@@ -49,11 +49,16 @@ public class DepositoDAO
     {
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "DELETE FROM " + this.nomeTabelaDeposito + " WHERE id = ?";
+            String query = "DELETE FROM " + this.nomeTabela + " WHERE id = ?";
             
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, this.getId(d, connection));
+            int id = this.getId(d, connection);
             
+            if(id > 0)
+                statement.setLong(1, id);
+            else
+                return false;
+
             int affectedRows = statement.executeUpdate();
             
             return this.affectARow(affectedRows);
@@ -69,7 +74,7 @@ public class DepositoDAO
     {
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "DELETE FROM " + this.nomeTabelaDeposito + " WHERE id = ?";
+            String query = "DELETE FROM " + this.nomeTabela + " WHERE id = ?";
             
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
@@ -90,7 +95,7 @@ public class DepositoDAO
     {
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "UPDATE " + this.nomeTabelaDeposito + " SET rua = ?, bairro = ?, cep = ?, estado = ?, "
+            String query = "UPDATE " + this.nomeTabela + " SET rua = ?, bairro = ?, cep = ?, estado = ?, "
                     + "numero = ?, capacidade_total = ?, capacidade_restante = ? WHERE id = ?";
             
             PreparedStatement statement = connection.prepareStatement(query);
@@ -122,7 +127,7 @@ public class DepositoDAO
         Deposito deposito = null;
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "SELECT * FROM " + this.nomeTabelaDeposito + " WHERE id = ?";
+            String query = "SELECT * FROM " + this.nomeTabela + " WHERE id = ?";
             
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
@@ -157,7 +162,7 @@ public class DepositoDAO
         Deposito deposito = null;
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "SELECT * FROM " + this.nomeTabelaDeposito;
+            String query = "SELECT * FROM " + this.nomeTabela;
             
             PreparedStatement statement = connection.prepareStatement(query);
             
@@ -193,14 +198,20 @@ public class DepositoDAO
     {
         try
         {
-            String query = "SELECT id FROM " + this.nomeTabelaDeposito 
-                    + " WHERE (rua = '" + d.getRua() + "' AND bairro = '" + d.getBairro() + "' AND cep = '"
-                    + d.getCep() + "' AND estado = '" + d.getEstado() + "' AND numero = " + d.getNumero() 
-                    + " AND capacidade_total = " + d.getCapacidadeTotal() + " AND capacidade_restante = "
-                    + d.getCapacidadeRestante() + ")";
+            
+            String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
+                    + "rua = ? AND bairro = ? AND cep = ? AND estado = ? AND numero = ? "
+                    + "AND capacidade_total = ? AND capacidade_restante = ?)";
             
             
             PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, d.getRua());
+            statement.setString(2, d.getBairro());
+            statement.setString(3, d.getCep());
+            statement.setString(4, d.getEstado());
+            statement.setInt(5, d.getNumero());
+            statement.setDouble(6, d.getCapacidadeTotal());
+            statement.setDouble(7, d.getCapacidadeRestante());
             statement.execute();
 
             ResultSet result = statement.getResultSet();
