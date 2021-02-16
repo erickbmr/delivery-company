@@ -8,6 +8,8 @@ public class Item
     private double volume;
     private double valorItem;
     private double valorFrete;
+    private Deposito depositoId;
+    private Servico servicoId;
 
     public Item(String descricao, boolean ehFragil, double volume, double valorItem, double valorFrete)
     {

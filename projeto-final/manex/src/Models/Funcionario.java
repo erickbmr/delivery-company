@@ -7,6 +7,7 @@ public class Funcionario
     private String cnh;
     private String telefone;
     private boolean disponivel;
+    private int veiculoId;
 
     public Funcionario()
     {
@@ -29,6 +30,11 @@ public class Funcionario
         return this.telefone;
     }
 
+    public int getVeiculoId()
+    {
+        return this.veiculoId;
+    }
+
     public boolean isDisponivel() {
         return this.disponivel;
     }
@@ -48,6 +54,7 @@ public class Funcionario
     public void setCnh(String cnh) {
         this.cnh = cnh;
     }
+    
     
     
 }
