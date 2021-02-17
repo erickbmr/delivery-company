@@ -17,6 +17,14 @@ public class PlataformaCliente
         return this.nome;
     }
 
+    public int getCategoriaId() {
+        return categoriaId;
+    }
+
+    public void setCategoriaId(int categoriaId) {
+        this.categoriaId = categoriaId;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -25,8 +33,8 @@ public class PlataformaCliente
         return this.documento;
     }
 
-    public String getCategoria() {
-        return this.categoria;
+    public int getCategoria() {
+        return this.categoriaId;
     }
 
     public String getTelefone() {
@@ -37,8 +45,8 @@ public class PlataformaCliente
         this.nome = nome;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setCategoria(int categoria) {
+        this.categoriaId = categoria;
     }
 
     public void setTelefone(String telefone) {

@@ -1,59 +1,207 @@
 package DAO;
 import Models.Item;
-import java.util.List;
+import Data.ConnectionDB;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ItemDAO 
 {
+    private final String nomeTabela = "item";
+    
     public ItemDAO()
     {
-        //conexão com o banco
+        //TODO: testes
     }
     
-    public void inserir(Item i)
+    public boolean inserir(Item i)
     {
-        //insert
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
+            
+            PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            
+            statement.setString(1, i.getDescricao());
+            statement.setBoolean(2, i.isFragil());
+            statement.setDouble(3, i.getVolume());
+            statement.setDouble(4, i.getValorItem());
+            statement.setDouble(5, i.getValorFrete());
+            statement.setInt(6, i.getDepositoId());
+            statement.setInt(7, i.getServicoId());
+            
+            int affectedRows = statement.executeUpdate();
+            
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        
+        return false;
     }
     
     //Remover
-    public Item remover(Item i)
+    public boolean remover(int id)
     {
-        //delete
-        return null;
-    }
-    
-    public Item remover(int id)
-    {
-        //delete
-        return null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "DELETE FROM " + this.nomeTabela + " WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            
+            int affectedRows = statement.executeUpdate();
+            
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
     
     //Editar
-    public void editar(Item p)
+    public boolean editar(Item i, int id)
     {
-        //update
-    }
-    
-    public void editar(int id)
-    {
-        //update
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "UPDATE " + this.nomeTabela + " SET descricao = ?, eh_fragil = ?, volume = ?, "
+                    + "valor_item = ?, valor_frete = ?, deposito_id = ?, servico_id = ? WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, i.getDescricao());
+            statement.setBoolean(2, i.ehFragil());
+            statement.setDouble(3, i.getVolume());
+            statement.setDouble(4, i.getValorItem());
+            statement.setDouble(5, i.getValorFrete());
+            statement.setInt(6, i.getDepositoId());
+            statement.setInt(7, i.getServicoId());
+            statement.setInt(8, id);
+            
+            int affectedRows = statement.executeUpdate();
+            
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
     
     //Get unico ou lista
-    public Item get(Item i)
-    {
-        //select where
-        return null;
-    }
-    
     public Item get(int id)
     {
-        //select where id
+        Item item = null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT * FROM " + this.nomeTabela + " WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            
+            result.next();
+            item = new Item();
+            item.id = result.getInt("id");
+            item.setDescricao(result.getString("descricao"));
+            item.setEhFragil(result.getBoolean("eh_fragil"));
+            item.setVolume(result.getDouble("volume"));
+            item.setValorItem(result.getDouble("valor_item"));
+            item.setValorFrete(result.getDouble("valor_frete"));
+            item.setDepositoId(result.getInt("deposito_id"));
+            item.setServicoId(result.getInt("servico_id"));
+
+            return item;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        
         return null;
     }
     
-    public List<Item> getLista()
+    public ArrayList<Item> getAll()
     {
-        //select *
+        ArrayList<Item> itens = new ArrayList<>();
+        Item item = null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT * FROM " + this.nomeTabela;
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            
+            while(result.next())
+            {
+                item = new Item();
+                item.id = result.getInt("id");
+                item.setDescricao(result.getString("descricao"));
+                item.setEhFragil(result.getBoolean("eh_fragil"));
+                item.setVolume(result.getDouble("volume"));
+                item.setValorItem(result.getDouble("valor_item"));
+                item.setValorFrete(result.getDouble("valor_frete"));
+                item.setDepositoId(result.getInt("deposito_id"));
+                item.setServicoId(result.getInt("servico_id"));
+                itens.add(item);
+            }
+            
+            if(!itens.isEmpty())
+                return itens;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
         return null;
+    }
+    
+    public int getId(Item i, Connection connection)
+    {
+        try
+        {
+            String query = "";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            
+            statement.setString(1, i.getDescricao());
+            statement.setBoolean(2, i.isFragil());
+            statement.setDouble(3, i.getVolume());
+            statement.setDouble(4, i.getValorItem());
+            statement.setDouble(5, i.getValorFrete());
+            statement.setInt(6, i.getDepositoId());
+            statement.setInt(7, i.getServicoId());
+            
+            ResultSet result = statement.getResultSet();
+            int id = -1;
+            while(result.next())
+                id = result.getInt("id");
+            
+            return id;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return -1;
+    }
+    
+    //retorna se alguma linha foi afetada
+    private boolean affectARow(int affectedRows)
+    {
+        return affectedRows > 0;
     }
 }

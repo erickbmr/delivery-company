@@ -45,31 +45,6 @@ public class DepositoDAO
     }
     
     //Remover
-    public boolean remover(Deposito d)
-    {
-        try(Connection connection = ConnectionDB.getConnection())
-        {
-            String query = "DELETE FROM " + this.nomeTabela + " WHERE id = ?";
-            
-            PreparedStatement statement = connection.prepareStatement(query);
-            int id = this.getId(d, connection);
-            
-            if(id > 0)
-                statement.setLong(1, id);
-            else
-                return false;
-
-            int affectedRows = statement.executeUpdate();
-            
-            return this.affectARow(affectedRows);
-        }
-        catch(SQLException ex)
-        {
-            System.err.println(ex.getMessage());
-        }
-        return false;
-    }
-    
     public boolean remover(int id)
     {
         try(Connection connection = ConnectionDB.getConnection())

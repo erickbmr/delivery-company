@@ -46,32 +46,6 @@ public class DestinatarioDAO
     }
     
     //Remover
-    public boolean remover(Destinatario d)
-    {
-        try(Connection connection = ConnectionDB.getConnection())
-        {
-            String query = "DELETE FROM " + this.nomeTabela + " WHERE id = ?";
-            
-            PreparedStatement statement = connection.prepareStatement(query);
-            int id = this.getId(d, connection);
-            
-            if(id > 0)
-                statement.setLong(1, id);
-            else
-                return false;
-            
-            int affectedRows = statement.executeUpdate();
-            
-            return this.affectRow(affectedRows);
-        }
-        catch(SQLException ex)
-        {
-            System.err.println(ex.getMessage());
-        }
-        
-        return false;
-    }
-    
     public boolean remover(int id)
     {
         try(Connection connection = ConnectionDB.getConnection())
@@ -197,44 +171,9 @@ public class DestinatarioDAO
         return null;
     }
 
-    private int getId(Destinatario d, Connection connection)
+    public int getId(Destinatario d, Connection connection)
     {
         try
-        {
-            String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
-                    + "nome = ? AND documento = ? AND rua = ? AND bairro = ? "
-                    + "AND cep = ? AND estado = ? AND numero = ?)";
-            
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, d.getNome());
-            statement.setString(2, d.getDocumento());
-            statement.setString(3, d.getRua());
-            statement.setString(4, d.getBairro());
-            statement.setString(5, d.getCep());
-            statement.setString(6, d.getEstado());
-            statement.setInt(7, d.getNumero());
-            
-            statement.execute();
-            
-            ResultSet result = statement.getResultSet();
-            int id = -1;
-            
-            while(result.next())
-                id = result.getInt("id");
-            
-            return id;
-        }
-        catch(SQLException ex)
-        {
-            System.err.println(ex.getMessage());
-        }
-        
-        return -1;
-    }
-    
-    public int getId(Destinatario d)
-    {
-        try(Connection connection = ConnectionDB.getConnection())
         {
             String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
                     + "nome = ? AND documento = ? AND rua = ? AND bairro = ? "

@@ -7,9 +7,9 @@ import java.util.Vector;
 public class Servico 
 {
     public int id;
-    private Destinatario destinatario;
-    private PlataformaCliente plataforma;
-    private Funcionario funcionario;
+    private int destinatarioId;
+    private int plataformaId;
+    private int funcionarioId;
     private int prazoEmDias;
     private double valorTotal;
     private Date dataLimite;
@@ -26,18 +26,6 @@ public class Servico
         return prazoEmDias;
     }
     
-    public Destinatario getDestinatario() {
-        return destinatario;
-    }
-
-    public PlataformaCliente getPlataforma() {
-        return plataforma;
-    }
-
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
     public Date getDataLimite() {
         return dataLimite;
     }
@@ -50,6 +38,30 @@ public class Servico
         return dataAgendada;
     }
 
+    public int getDestinatarioId() {
+        return destinatarioId;
+    }
+
+    public void setDestinatarioId(int destinatarioId) {
+        this.destinatarioId = destinatarioId;
+    }
+
+    public int getPlataformaId() {
+        return plataformaId;
+    }
+
+    public void setPlataformaId(int plataformaId) {
+        this.plataformaId = plataformaId;
+    }
+
+    public int getFuncionarioId() {
+        return funcionarioId;
+    }
+
+    public void setFuncionarioId(int funcionarioId) {
+        this.funcionarioId = funcionarioId;
+    }
+    
     public double getValorTotal() {
         return valorTotal;
     }
@@ -58,10 +70,6 @@ public class Servico
         this.dataAgendada = dataAgendada;
     }
     
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
     public void setPrazoEmDias(int prazoEmDias) {
         this.prazoEmDias = prazoEmDias;
     }

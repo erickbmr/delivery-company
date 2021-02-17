@@ -14,6 +14,15 @@ public class Funcionario
         
     }
     
+    public Funcionario(String nome, String cnh, String telefone)
+    {
+        this.nome = nome;
+        this.cnh = cnh;
+        this.telefone = telefone;
+        this.disponivel = false;
+        this.veiculoId = 0;
+    }
+    
     public String getNome() {
         return this.nome;
     }

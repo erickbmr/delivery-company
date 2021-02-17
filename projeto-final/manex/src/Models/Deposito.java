@@ -29,6 +29,14 @@ public class Deposito
         this.capacidadeRestante = this.capacidadeTotal;
 
     }
+
+    public void setCapacidadeTotal(double capacidadeTotal) {
+        this.capacidadeTotal = capacidadeTotal;
+    }
+
+    public void setCapacidadeRestante(double capacidadeRestante) {
+        this.capacidadeRestante = capacidadeRestante;
+    }
     
     public void setId(int id) {
         this.id = id;
