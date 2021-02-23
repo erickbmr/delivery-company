@@ -173,7 +173,9 @@ public class ItemDAO
     {
         try
         {
-            String query = "";
+            String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
+                    + "descricao = ? AND eh_fragil = ? AND volume = ? AND valor_item = ? AND "
+                    + "valor_frete = ? AND deposito_id = ? AND servico_id = ?)";
             
             PreparedStatement statement = connection.prepareStatement(query);
             
@@ -185,7 +187,10 @@ public class ItemDAO
             statement.setInt(6, i.getDepositoId());
             statement.setInt(7, i.getServicoId());
             
+            statement.execute();
+            
             ResultSet result = statement.getResultSet();
+            
             int id = -1;
             while(result.next())
                 id = result.getInt("id");

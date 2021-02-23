@@ -33,8 +33,8 @@ public class PlataformaCliente
         return this.documento;
     }
 
-    public int getCategoria() {
-        return this.categoriaId;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public String getTelefone() {

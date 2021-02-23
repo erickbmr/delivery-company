@@ -66,8 +66,8 @@ public class FuncionarioDAO
     {
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "UPDATE " + this.nomeTabela + " SET nome = ?, documento = ?, telefone = ?, disponivel = ? " +
-            "WHERE id = ?";
+            String query = "UPDATE " + this.nomeTabela + " SET nome = ?, documento = ?, "
+                    + "telefone = ?, disponivel = ? WHERE id = ?";
             
             PreparedStatement statement = connection.prepareStatement(query);
             
@@ -160,7 +160,7 @@ public class FuncionarioDAO
         try
         {
             String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
-                    + "nome = ?, documento = ?, telefone = ?, disponivel = ?)";
+                    + "nome = ? AND documento = ? AND telefone = ? AND disponivel = ?)";
             
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, f.getNome());

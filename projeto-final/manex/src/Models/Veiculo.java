@@ -11,6 +11,11 @@ public class Veiculo
     private double capacidadeTotal;
     private double capacidadeRestante;
 
+    public Veiculo()
+    {
+        
+    }
+    
     public Veiculo(String placa, String modelo, String cor, double capacidadeTotal)
     {
         this.placa = placa;
@@ -38,6 +43,26 @@ public class Veiculo
 
     public double getCapacidadeRestante() {
         return this.capacidadeRestante;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public void setCapacidadeTotal(double capacidadeTotal) {
+        this.capacidadeTotal = capacidadeTotal;
+    }
+
+    public void setCapacidadeRestante(double capacidadeRestante) {
+        this.capacidadeRestante = capacidadeRestante;
     }
 
     

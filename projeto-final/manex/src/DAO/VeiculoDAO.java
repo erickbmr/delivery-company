@@ -1,59 +1,200 @@
 package DAO;
 import Models.Veiculo;
-import java.util.List;
+import Data.ConnectionDB;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class VeiculoDAO
 {
+    private final String nomeTabela = "veiculo";
+    
     public VeiculoDAO()
     {
-        //conexão com o banco
+        //TODO testes
     }
     
-    public void inserir(Veiculo v)
+    public boolean inserir(Veiculo v)
     {
-        //insert
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?, ?, ?)";
+            
+            PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            
+            statement.setString(1, v.getPlaca());
+            statement.setString(2, v.getModelo());
+            statement.setString(3, v.getCor());
+            statement.setDouble(4, v.getCapacidadeTotal());
+            statement.setDouble(5, v.getCapacidadeRestante());
+            
+            int affectedRows = statement.executeUpdate();
+            
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+
+        return false;
+
     }
     
-    //Remover
-    public Veiculo remover(Veiculo v)
+    public boolean remover(int id)
     {
-        //delete
-        return null;
-    }
-    
-    public Veiculo remover(int id)
-    {
-        //delete
-        return null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "DELETE FROM " + this.nomeTabela + " WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            
+            int affectedRows = statement.executeUpdate();
+            
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
     
     //Editar
-    public void editar(Veiculo v)
+    public boolean editar(Veiculo v, int id)
     {
-        //update
-    }
-    
-    public void editar(int id)
-    {
-        //update
-    }
-    
-    //Get unico ou lista
-    public Veiculo get(Veiculo v)
-    {
-        //select where
-        return null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "UPDATE " + this.nomeTabela + " SET placa = ?, modelo = ?, cor = ?, "
+                    + "capacidade_total = ?, capacidade_restante = ? WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, v.getPlaca());
+            statement.setString(2, v.getModelo());
+            statement.setString(3, v.getCor());
+            statement.setDouble(4, v.getCapacidadeTotal());
+            statement.setDouble(5, v.getCapacidadeRestante());
+            statement.setInt(6, id);
+            
+            int affectedRows = statement.executeUpdate();
+            
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
     
     public Veiculo get(int id)
     {
-        //select where id
+        Veiculo veiculo = null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT * FROM " + this.nomeTabela + " WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            
+            result.next();
+            veiculo = new Veiculo();
+            veiculo.id = result.getInt("id");
+            veiculo.setPlaca(result.getString("placa"));
+            veiculo.setModelo(result.getString("modelo"));
+            veiculo.setCor(result.getString("cor"));
+            veiculo.setCapacidadeTotal(result.getDouble("capacidade_total"));
+            veiculo.setCapacidadeRestante(result.getDouble("capacidade_restante"));
+            
+            return veiculo;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        
         return null;
     }
     
-    public List<Veiculo> getLista()
+    public ArrayList<Veiculo> getLista()
     {
-        //select *
+        ArrayList<Veiculo> veiculos = new ArrayList<>();
+        Veiculo veiculo = null;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT * FROM " + this.nomeTabela;
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            
+            while(result.next())
+            {
+                veiculo = new Veiculo();
+                veiculo.id = result.getInt("id");
+                veiculo.setPlaca(result.getString("placa"));
+                veiculo.setModelo(result.getString("modelo"));
+                veiculo.setCor(result.getString("cor"));
+                veiculo.setCapacidadeTotal(result.getDouble("capacidade_total"));
+                veiculo.setCapacidadeRestante(result.getDouble("capacidade_restante"));
+                veiculos.add(veiculo);
+            }
+            
+            if(!veiculos.isEmpty())
+                return veiculos;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
         return null;
+    }
+    
+    public int getId(Veiculo v, Connection connection)
+    {
+        try
+        {
+            String query = "SELECT id FROM " + this.nomeTabela + " WHERE(placa = ? "
+                    + "AND modelo = ? AND cor = ? AND capacidade_total = ? AND "
+                    + "capacidade_restante = ?)";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setString(1, v.getPlaca());
+            statement.setString(2, v.getModelo());
+            statement.setString(3, v.getCor());
+            statement.setDouble(4, v.getCapacidadeTotal());
+            statement.setDouble(5, v.getCapacidadeRestante());
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            
+            int id = -1;
+            while(result.next())
+                id = result.getInt("id");
+            
+            return id;
+        }
+        catch(SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return -1;
+    }
+    
+    private boolean affectARow(int affectedRows)
+    {
+        return affectedRows > 0;
     }
 }

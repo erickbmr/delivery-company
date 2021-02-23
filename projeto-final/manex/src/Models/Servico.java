@@ -42,6 +42,20 @@ public class Servico
         return destinatarioId;
     }
 
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public void setDataLimite(Date dataLimite) {
+        this.dataLimite = dataLimite;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    
+    
     public void setDestinatarioId(int destinatarioId) {
         this.destinatarioId = destinatarioId;
     }
