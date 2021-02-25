@@ -90,5 +90,15 @@ public class Deposito
         this.estado = estado;
     }
     
-   
+    public boolean ehValido()
+    {
+        if((this.rua.length() > 0 && this.rua.length() <= 100) &&
+           (this.bairro.length() > 0 && this.bairro.length() <= 50) &&
+           (this.cep.length() == 8) && (this.estado.length() == 2) &&
+           (this.numero > 0) && (this.capacidadeTotal > 0))
+            return true;
+        
+        
+        return false;
+    }
 }
