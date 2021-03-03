@@ -1,5 +1,5 @@
 package DAO;
-import Models.Funcionario;
+import Models.Disabled.Funcionario;
 import Data.ConnectionDB;
 import java.sql.Connection;
 import java.sql.SQLException;

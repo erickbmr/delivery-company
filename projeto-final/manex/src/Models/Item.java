@@ -93,5 +93,10 @@ public class Item
         this.valorFrete = valorFrete;
     }
     
-    
+    public boolean ehValido()
+    {
+        return this.descricao.length() > 0 && this.descricao.length() < 256 &&
+                this.volume > 0 && this.valorItem > 0 && this.valorFrete > 0 &&
+                this.depositoId > 0 && this.servicoId > 0;
+    }
 }

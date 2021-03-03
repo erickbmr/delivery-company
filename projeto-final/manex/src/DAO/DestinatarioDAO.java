@@ -1,6 +1,7 @@
 package DAO;
 import Models.Destinatario;
 import Data.ConnectionDB;
+import Helpers.Log;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -29,7 +30,8 @@ public class DestinatarioDAO
             statement.setString(3, d.getRua());
             statement.setString(4, d.getBairro());
             statement.setString(5, d.getCep());
-            statement.setString(6, d.getEstado());
+            String estado = Helpers.UnidadeFederativa.getUF(d.getEstado());
+            statement.setString(6, estado);
             statement.setInt(7, d.getNumero());
             
             int affectedRows = statement.executeUpdate();
@@ -39,10 +41,10 @@ public class DestinatarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(d, "DAO: " + Helpers.Mensagem.ErroCadastroDestinatario(), ex.getMessage()).print();
+            return false;
         }
         
-        return false;
     }
     
     //Remover
@@ -61,10 +63,9 @@ public class DestinatarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRemoverDestinatario(), ex.getMessage()).print();
+            return false;
         }
-        
-        return false;
     }
     
     //Editar
@@ -81,7 +82,8 @@ public class DestinatarioDAO
             statement.setString(3, d.getRua());
             statement.setString(4, d.getBairro());
             statement.setString(5, d.getCep());
-            statement.setString(6, d.getEstado());
+            String estado = Helpers.UnidadeFederativa.getUF(d.getEstado());
+            statement.setString(6, estado);
             statement.setInt(7, d.getNumero());
             statement.setInt(8, id);
             
@@ -91,10 +93,9 @@ public class DestinatarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(d, "DAO: " + Helpers.Mensagem.ErroEditarDestinatario(), ex.getMessage()).print();
+            return false;
         }
-        
-        return false;
     }
     
     //Get unico
@@ -120,16 +121,17 @@ public class DestinatarioDAO
             destinatario.setRua(result.getString("rua"));
             destinatario.setBairro(result.getString("bairro"));
             destinatario.setCep(result.getString("cep"));
-            destinatario.setEstado(result.getString("estado"));
+            String estado = Helpers.UnidadeFederativa.getEstado(result.getString("estado"));
+            destinatario.setEstado(estado);
             destinatario.setNumero(result.getInt("numero"));
             
             return destinatario;
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRecuperarDestinatario(), ex.getMessage()).print();
+            return null;
         }
-        return null;
     }
     
     public ArrayList<Destinatario> getAll()
@@ -155,7 +157,8 @@ public class DestinatarioDAO
                 destinatario.setRua(result.getString("rua"));
                 destinatario.setBairro(result.getString("bairro"));
                 destinatario.setCep(result.getString("cep"));
-                destinatario.setEstado(result.getString("estado"));
+                String estado = Helpers.UnidadeFederativa.getEstado(result.getString("estado"));
+                destinatario.setEstado(estado);
                 destinatario.setNumero(result.getInt("numero"));
                 destinatarios.add(destinatario);
             }
@@ -165,7 +168,8 @@ public class DestinatarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(destinatarios, "DAO: " + Helpers.Mensagem.ErroRecuperarListaDestinatario(), ex.getMessage()).print();
+            return null;
         }
         
         return null;
@@ -185,7 +189,8 @@ public class DestinatarioDAO
             statement.setString(3, d.getRua());
             statement.setString(4, d.getBairro());
             statement.setString(5, d.getCep());
-            statement.setString(6, d.getEstado());
+            String estado = Helpers.UnidadeFederativa.getUF(d.getEstado());
+            statement.setString(6, estado);
             statement.setInt(7, d.getNumero());
             
             statement.execute();
@@ -200,10 +205,9 @@ public class DestinatarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(d, "DAO: " + "Erro ao pegar o Id do destinatário", ex.getMessage()).print();
+            return -1;
         }
-        
-        return -1;
     }
     
     private boolean affectRow(int affectedRows) 

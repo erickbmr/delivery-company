@@ -100,4 +100,12 @@ public class Servico
         return false;
     }
     
+    public boolean ehValido()
+    {
+        Date hoje = new Date();
+        return this.valorTotal > 0 && this.prazoEmDias > 0 && 
+                this.dataLimite.after(hoje) && this.dataAgendada.after(hoje) &&
+                this.destinatarioId > 0 && this.plataformaId > 0 &&
+                this.funcionarioId > 0;
+    }
 }

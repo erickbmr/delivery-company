@@ -52,4 +52,10 @@ public class PlataformaCliente
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
+    public boolean ehValido()
+    {
+        return this.documento.length() == 14 && this.telefone.length() >= 8 &&
+                this.telefone.length() <= 13 && this.categoriaId > 0;
+    }
 }

@@ -1,5 +1,5 @@
 package DAO;
-import Models.Veiculo;
+import Models.Disabled.Veiculo;
 import Data.ConnectionDB;
 import java.sql.SQLException;
 import java.sql.Connection;

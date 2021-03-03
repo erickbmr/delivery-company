@@ -1,5 +1,5 @@
 package DAO;
-import Models.Deposito;
+import Models.Disabled.Deposito;
 import Data.ConnectionDB;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -27,7 +27,8 @@ public class DepositoDAO
             statement.setString(1, d.getRua());
             statement.setString(2, d.getBairro());
             statement.setString(3, d.getCep());
-            statement.setString(4, d.getEstado());
+            String estado = Helpers.UnidadeFederativa.getUF(d.getEstado());
+            statement.setString(4, estado);
             statement.setInt(5, d.getNumero());
             statement.setDouble(6, d.getCapacidadeTotal());
             statement.setDouble(7, d.getCapacidadeRestante());
@@ -77,7 +78,8 @@ public class DepositoDAO
             statement.setString(1, d.getRua());
             statement.setString(2, d.getBairro());
             statement.setString(3, d.getCep());
-            statement.setString(4, d.getEstado());
+            String estado = Helpers.UnidadeFederativa.getUF(d.getEstado());
+            statement.setString(4, estado);
             statement.setInt(5, d.getNumero());
             statement.setDouble(6, d.getCapacidadeTotal());
             statement.setDouble(7, d.getCapacidadeRestante());
@@ -117,7 +119,8 @@ public class DepositoDAO
             deposito.setRua(result.getString("rua"));
             deposito.setBairro(result.getString("bairro"));
             deposito.setCep(result.getString("cep"));
-            deposito.setEstado(result.getString("estado"));
+            String estado = result.getString("estado");
+            deposito.setEstado(Helpers.UnidadeFederativa.getEstado(estado));
             deposito.setNumero(result.getInt("numero"));
 
             return deposito;
@@ -152,7 +155,8 @@ public class DepositoDAO
                 deposito.setRua(result.getString("rua"));
                 deposito.setBairro(result.getString("bairro"));
                 deposito.setCep(result.getString("cep"));
-                deposito.setEstado(result.getString("estado"));
+                String estado = result.getString("estado");
+                deposito.setEstado(Helpers.UnidadeFederativa.getEstado(estado));
                 deposito.setNumero(result.getInt("numero"));
                 depositos.add(deposito);
             }
@@ -183,7 +187,8 @@ public class DepositoDAO
             statement.setString(1, d.getRua());
             statement.setString(2, d.getBairro());
             statement.setString(3, d.getCep());
-            statement.setString(4, d.getEstado());
+            String estado = Helpers.UnidadeFederativa.getUF(d.getEstado());
+            statement.setString(4, estado);
             statement.setInt(5, d.getNumero());
             statement.setDouble(6, d.getCapacidadeTotal());
             statement.setDouble(7, d.getCapacidadeRestante());

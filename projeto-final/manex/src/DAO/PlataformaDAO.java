@@ -1,6 +1,7 @@
 package DAO;
 import Models.PlataformaCliente;
 import Data.ConnectionDB;
+import Helpers.Log;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,9 +37,9 @@ public class PlataformaDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(p, "DAO: " + Helpers.Mensagem.ErroCadastroPlataforma(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     public boolean remover(int id)
@@ -56,9 +57,9 @@ public class PlataformaDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRemoverPlataforma(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     public boolean editar(PlataformaCliente p, int id)
@@ -80,9 +81,9 @@ public class PlataformaDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(p, "DAO: " + Helpers.Mensagem.ErroEditarPlataforma(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     public PlataformaCliente get(int id)
@@ -110,9 +111,9 @@ public class PlataformaDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(plataforma, "DAO: " + Helpers.Mensagem.ErroRecuperarPlataforma(), ex.getMessage()).print();
+            return null;
         }
-        return null;
     }
     
     public ArrayList<PlataformaCliente> getAll()
@@ -141,12 +142,14 @@ public class PlataformaDAO
             
             if(!plataformas.isEmpty())
                 return plataformas;
+            else
+                return null;
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(plataforma, "DAO: " + Helpers.Mensagem.ErroRecuperarListaPlataforma(), ex.getMessage()).print();
+            return null;
         }
-        return null;
     }
     
     public int getId(PlataformaCliente p, Connection connection)
@@ -174,9 +177,9 @@ public class PlataformaDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(p, "DAO: Erro ao pegar o Id da plataforma." , ex.getMessage()).print();
+            return -1;
         }
-        return -1;
     }
     //retorna se alguma linha foi afetada
     private boolean affectARow(int affectedRows)

@@ -1,4 +1,4 @@
-package Models;
+package Models.Disabled;
 
 public class Funcionario 
 {

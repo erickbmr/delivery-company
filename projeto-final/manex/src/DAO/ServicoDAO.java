@@ -1,6 +1,7 @@
 package DAO;
 import Models.Servico;
 import Data.ConnectionDB;
+import Helpers.Log;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +46,7 @@ public class ServicoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(s, "DAO: " + Helpers.Mensagem.ErroCadastroServico(), ex.getMessage()).print();
             return false;
         }
     }
@@ -66,7 +67,7 @@ public class ServicoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRemoverServico(), ex.getMessage()).print();
             return false;
         }
     }
@@ -101,7 +102,7 @@ public class ServicoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(s, "DAO: " + Helpers.Mensagem.ErroEditarServico(), ex.getMessage()).print();
             return false;
         }
     }
@@ -137,7 +138,7 @@ public class ServicoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(servico, "DAO: " + Helpers.Mensagem.ErroRecuperarServico(), ex.getMessage()).print();
             return null;
         }
         
@@ -174,12 +175,14 @@ public class ServicoDAO
             
             if(!servicos.isEmpty())
                 return servicos;
+            else
+                return null;
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(servico, "DAO: " + Helpers.Mensagem.ErroRecuperarListaServico(), ex.getMessage()).print();
+            return null;
         }
-        return null;
     }
     
     //retorna se alguma linha foi afetada

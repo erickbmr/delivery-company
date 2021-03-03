@@ -1,6 +1,7 @@
 package DAO;
 import Models.Item;
 import Data.ConnectionDB;
+import Helpers.Log;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,10 +40,9 @@ public class ItemDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(i, "DAO: " + Helpers.Mensagem.ErroCadastroItem(), ex.getMessage()).print();
+            return false;
         }
-        
-        return false;
     }
     
     //Remover
@@ -61,9 +61,9 @@ public class ItemDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRemoverItem(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     //Editar
@@ -90,9 +90,9 @@ public class ItemDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(i, "DAO: " + Helpers.Mensagem.ErroEditarItem(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     //Get unico ou lista
@@ -125,10 +125,9 @@ public class ItemDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(item, "DAO: " + Helpers.Mensagem.ErroRecuperarItem(), ex.getMessage()).print();
+            return null;
         }
-        
-        return null;
     }
     
     public ArrayList<Item> getAll()
@@ -161,12 +160,14 @@ public class ItemDAO
             
             if(!itens.isEmpty())
                 return itens;
+            else
+                return null;
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(item, "DAO: " + Helpers.Mensagem.ErroRecuperarListaItem(), ex.getMessage()).print();
+            return null;
         }
-        return null;
     }
     
     public int getId(Item i, Connection connection)
@@ -199,9 +200,9 @@ public class ItemDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(i, "DAO: " + "Erro ao pegar o Id do item", ex.getMessage()).print();
+            return -1;
         }
-        return -1;
     }
     
     //retorna se alguma linha foi afetada

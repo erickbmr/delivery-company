@@ -1,4 +1,4 @@
-package Models;
+package Models.Disabled;
 
 import java.util.Vector;
 
@@ -97,7 +97,6 @@ public class Deposito
            (this.cep.length() == 8) && (this.estado.length() == 2) &&
            (this.numero > 0) && (this.capacidadeTotal > 0))
             return true;
-        
         
         return false;
     }

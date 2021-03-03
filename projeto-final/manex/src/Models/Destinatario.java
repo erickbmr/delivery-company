@@ -95,4 +95,14 @@ public class Destinatario
     public void setNumero(int numero) {
         this.numero = numero;
     }
+    
+    public boolean ehValido()
+    {
+        return this.nome.length() > 0 && this.nome.length() < 150 &&
+                this.documento.length() == 11 &&
+                this.rua.length() > 0 && this.rua.length() < 100 &&
+                this.bairro.length() > 0 && this.bairro.length() < 50 &&
+                this.cep.length() == 8 &&
+                this.estado.length() > 0 && this.numero > 0;
+    }
 }
