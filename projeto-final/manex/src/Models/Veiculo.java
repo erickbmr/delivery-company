@@ -1,4 +1,4 @@
-package Models.Disabled;
+package Models;
 
 import java.util.Vector;
 
@@ -65,6 +65,11 @@ public class Veiculo
         this.capacidadeRestante = capacidadeRestante;
     }
 
-    
+    public boolean ehValido()
+    {
+        return this.capacidadeTotal > 0 && this.cor.length() > 0 &&
+                this.cor.length() < 15 && this.modelo.length() > 0 &&
+                this.modelo.length() < 20 && this.placa.length() == 7;
+    }
     
 }

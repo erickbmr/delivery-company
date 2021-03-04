@@ -1,4 +1,4 @@
-package Models.Disabled;
+package Models;
 
 public class Funcionario 
 {
@@ -64,6 +64,11 @@ public class Funcionario
         this.cnh = cnh;
     }
     
-    
+    public boolean ehValido()
+    {
+        return this.cnh.length() == 11 && this.nome.length() > 0 &&
+                this.nome.length() < 150 && this.telefone.length() >= 8 &&
+                this.telefone.length() <= 11;
+    }
     
 }

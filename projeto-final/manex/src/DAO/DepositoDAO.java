@@ -1,6 +1,7 @@
 package DAO;
-import Models.Disabled.Deposito;
+import Models.Deposito;
 import Data.ConnectionDB;
+import Helpers.Log;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -39,10 +40,10 @@ public class DepositoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(d, "DAO: " + Helpers.Mensagem.ErroCadastroDeposito(), ex.getMessage()).print();
+            return false;
         }
         
-        return false;
     }
     
     //Remover
@@ -61,9 +62,9 @@ public class DepositoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRemoverDeposito(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     //Editar
@@ -91,10 +92,9 @@ public class DepositoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(d, "DAO: " + Helpers.Mensagem.ErroEditarDeposito(), ex.getMessage()).print();
+            return false;
         }
-        
-        return false;
     }
     
     
@@ -127,10 +127,9 @@ public class DepositoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRecuperarDeposito(), ex.getMessage()).print();
+            return null;
         }
-        
-        return null;
     }
     
     //get lista
@@ -173,9 +172,9 @@ public class DepositoDAO
     
     //get deposito a partir de id
     //parametro connection eh necessario para que ele nao feche no metodo que chamou este
-    public int getId(Deposito d, Connection connection)
+    public int getId(Deposito d)
     {
-        try
+        try(Connection connection = ConnectionDB.getConnection())
         {
             
             String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
@@ -203,10 +202,9 @@ public class DepositoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(d, "DAO: " + "Erro ao pegar o Id do deposito" , ex.getMessage()).print();
+            return -1;
         }
-        
-        return -1;
     }
     
     //retorna se alguma linha foi afetada

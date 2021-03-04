@@ -1,5 +1,5 @@
 import DAO.FuncionarioDAO;
-import Models.Disabled.Funcionario;
+import Models.Funcionario;
 import Data.ConnectionDB;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -175,9 +175,9 @@ public class DestinatarioDAO
         return null;
     }
 
-    public int getId(Destinatario d, Connection connection)
+    public int getId(Destinatario d)
     {
-        try
+        try(Connection connection = ConnectionDB.getConnection())
         {
             String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
                     + "nome = ? AND documento = ? AND rua = ? AND bairro = ? "

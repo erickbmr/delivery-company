@@ -144,7 +144,7 @@ public class ServicoDAO
         
     }
     
-    public ArrayList<Servico> getLista()
+    public ArrayList<Servico> getAll()
     {
         ArrayList<Servico> servicos = new ArrayList<>();
         Servico servico = null;
@@ -182,6 +182,46 @@ public class ServicoDAO
         {
             new Log(servico, "DAO: " + Helpers.Mensagem.ErroRecuperarListaServico(), ex.getMessage()).print();
             return null;
+        }
+    }
+    
+    public int getId(Servico s)
+    {
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT id FROM " + this.nomeTabela + " WHERE("
+                    + "valor_total_frete = ? AND prazo_dias = ? AND data_limite = ? AND "
+                    + "data_cadastro = ? AND data_agendada = ? AND destinatario_id = ? AND "
+                    + "plataforma_id = ? AND funcionario_id = ?)";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setDouble(1, s.getValorTotal());
+            statement.setInt(2, s.getPrazoEmDias());
+            Date dataSql = (Date)s.getDataLimite();
+            statement.setDate(3, dataSql);
+            dataSql = (Date)s.getDataCadastro();
+            statement.setDate(4, dataSql);
+            dataSql = (Date)s.getDataAgendada();
+            statement.setDate(5, dataSql);
+            statement.setInt(6, s.getDestinatarioId());
+            statement.setInt(7, s.getPlataformaId());
+            statement.setInt(8, s.getFuncionarioId());
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            
+            int id = -1;
+            while(result.next())
+                id = result.getInt("id");
+            
+            return id;
+        }
+        catch(SQLException ex)
+        {
+            new Log(s, "DAO: " + "Erro ao recuperar o Id do servico", ex.getMessage()).print();
+            return -1;
         }
     }
     

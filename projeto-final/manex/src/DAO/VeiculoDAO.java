@@ -1,6 +1,7 @@
 package DAO;
-import Models.Disabled.Veiculo;
+import Models.Veiculo;
 import Data.ConnectionDB;
+import Helpers.Log;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,10 +38,9 @@ public class VeiculoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(v, "DAO: " + Helpers.Mensagem.ErroCadastroVeiculo(), ex.getMessage()).print();
+            return false;
         }
-
-        return false;
 
     }
     
@@ -59,9 +59,9 @@ public class VeiculoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRemoverVeiculo(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     //Editar
@@ -86,9 +86,9 @@ public class VeiculoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(v, "DAO: " + Helpers.Mensagem.ErroEditarVeiculo(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     public Veiculo get(int id)
@@ -118,13 +118,12 @@ public class VeiculoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRecuperarVeiculo(), ex.getMessage()).print();
+            return null;
         }
-        
-        return null;
     }
     
-    public ArrayList<Veiculo> getLista()
+    public ArrayList<Veiculo> getAll()
     {
         ArrayList<Veiculo> veiculos = new ArrayList<>();
         Veiculo veiculo = null;
@@ -152,17 +151,19 @@ public class VeiculoDAO
             
             if(!veiculos.isEmpty())
                 return veiculos;
+            else
+                return null;
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(null, "DAO: " + Helpers.Mensagem.ErroRecuperarListaVeiculo(), ex.getMessage()).print();
+            return null;
         }
-        return null;
     }
     
-    public int getId(Veiculo v, Connection connection)
+    public int getId(Veiculo v)
     {
-        try
+        try(Connection connection = ConnectionDB.getConnection())
         {
             String query = "SELECT id FROM " + this.nomeTabela + " WHERE(placa = ? "
                     + "AND modelo = ? AND cor = ? AND capacidade_total = ? AND "
@@ -188,9 +189,9 @@ public class VeiculoDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(v, "DAO: " + "Erro ao recuperar o id do veiculo.", ex.getMessage()).print();
+            return -1;
         }
-        return -1;
     }
     
     private boolean affectARow(int affectedRows)

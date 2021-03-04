@@ -1,6 +1,7 @@
 package DAO;
-import Models.Disabled.Funcionario;
+import Models.Funcionario;
 import Data.ConnectionDB;
+import Helpers.Log;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -34,10 +35,9 @@ public class FuncionarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(f, "DAO: " + Helpers.Mensagem.ErroCadastroFuncionario(), ex.getMessage()).print();
+            return false;
         }
-
-        return false;
     }
     
     //Remover
@@ -56,9 +56,9 @@ public class FuncionarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRemoverFuncionario(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     //Editar
@@ -83,9 +83,9 @@ public class FuncionarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroEditarFuncionario(), ex.getMessage()).print();
+            return false;
         }
-        return false;
     }
     
     public Funcionario get(int id)
@@ -114,9 +114,9 @@ public class FuncionarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(id, "DAO: " + Helpers.Mensagem.ErroRecuperarFuncionario(), ex.getMessage()).print();
+            return null;
         }
-        return null;
     }
     
     public ArrayList<Funcionario> getAll()
@@ -150,14 +150,15 @@ public class FuncionarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(null, "DAO: " + Helpers.Mensagem.ErroRecuperarListaFuncionario(), ex.getMessage()).print();
+            return null;
         }
         return null;
     }
     
-    public int getId(Funcionario f, Connection connection)
+    public int getId(Funcionario f)
     {
-        try
+        try(Connection connection = ConnectionDB.getConnection())
         {
             String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
                     + "nome = ? AND documento = ? AND telefone = ? AND disponivel = ?)";
@@ -180,9 +181,9 @@ public class FuncionarioDAO
         }
         catch(SQLException ex)
         {
-            System.err.println(ex.getMessage());
+            new Log(f, "DAO: " + "Erro ao pegar o Id do funcionario" , ex.getMessage()).print();
+            return -1;
         }
-        return -1;
     }
 
     private boolean affectARow(int affectedRows)

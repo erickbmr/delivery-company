@@ -152,9 +152,9 @@ public class PlataformaDAO
         }
     }
     
-    public int getId(PlataformaCliente p, Connection connection)
+    public int getId(PlataformaCliente p)
     {
-        try
+        try(Connection connection = ConnectionDB.getConnection())
         {
             String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
                     + "documento = ? AND telefone = ? AND categoria_id = ?)";

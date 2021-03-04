@@ -29,25 +29,81 @@ public class ItemController
     
     public static Item get(int id)
     {
-        
-        return null;
+        try
+        {
+            if(id <= 0)
+                return null;
+            
+            ItemDAO dao = new ItemDAO();
+            
+            Item item = dao.get(id);
+            
+            if(item != null)
+                return item;
+            else
+                return null;
+        }
+        catch(Exception ex)
+        {
+            new Log(id, Helpers.Mensagem.ErroRecuperarItem(), ex.getMessage()).print();
+            return null;
+        }
     }
     
     public static ArrayList<Item> getAll()
     {
-        
-        return null;
+        try
+        {
+            ItemDAO dao = new ItemDAO();
+            
+            return dao.getAll();
+        }
+        catch(Exception ex)
+        {
+            new Log(null, Helpers.Mensagem.ErroRecuperarListaItem(), ex.getMessage()).print();
+            return null;
+        }
     }
     
     public static boolean editar(Item item, int id)
     {
-        
-        return false;
+        try
+        {
+            if(id <= 0)
+                return false;
+            
+            if(item == null)
+                return false;
+            
+            if(!item.ehValido())
+                return false;
+            
+            ItemDAO dao = new ItemDAO();
+            
+            return dao.editar(item, id);
+        }
+        catch(Exception ex)
+        {
+            new Log(item, Helpers.Mensagem.ErroEditarItem(), ex.getMessage()).print();
+            return false;
+        }
     }
     
     public static boolean excluir(int id)
     {
-        
-        return false;
+        try
+        {
+            if(id <= 0)
+                return false;
+            
+            ItemDAO dao = new ItemDAO();
+            
+            return dao.remover(id);
+        }
+        catch(Exception ex)
+        {
+            new Log(id, Helpers.Mensagem.ErroRemoverItem(), ex.getMessage()).print();
+            return false;
+        }
     }
 }

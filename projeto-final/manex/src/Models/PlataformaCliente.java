@@ -56,6 +56,6 @@ public class PlataformaCliente
     public boolean ehValido()
     {
         return this.documento.length() == 14 && this.telefone.length() >= 8 &&
-                this.telefone.length() <= 13 && this.categoriaId > 0;
+                this.telefone.length() <= 11 && this.categoriaId > 0;
     }
 }

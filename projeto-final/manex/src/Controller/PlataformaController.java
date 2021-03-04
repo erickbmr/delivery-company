@@ -33,25 +33,84 @@ public class PlataformaController
     
     public static PlataformaCliente get(int id)
     {
-        
-        return null;
+        try
+        {
+            if(id <= 0)
+                return null;
+            
+            PlataformaDAO dao = new PlataformaDAO();
+            
+            PlataformaCliente plataforma = dao.get(id);
+            
+            if(plataforma != null)
+                return plataforma;
+            else
+                return null;
+        }
+        catch(Exception ex)
+        {
+            new Log(id, Helpers.Mensagem.ErroRecuperarPlataforma(), ex.getMessage()).print();
+            return null;
+        }
     }
     
     public static ArrayList<PlataformaCliente> getAll()
     {
-        
-        return null;
+        try
+        {
+            PlataformaDAO dao = new PlataformaDAO();
+            
+            return dao.getAll();
+        }
+        catch(Exception ex)
+        {
+            new Log(null, Helpers.Mensagem.ErroRecuperarListaPlataforma(), ex.getMessage()).print();
+            return null;
+        }
     }
     
     public static boolean editar(PlataformaCliente plataforma, int id)
     {
-        
-        return false;
+        try
+        {
+            if(id <= 0)
+                return false;
+            
+            if(plataforma == null)
+                return false;
+            
+            if(!plataforma.ehValido())
+                return false;
+            
+            if(!Verificador.ehCNPJ(plataforma.getDocumento()))
+                return false;
+            
+            PlataformaDAO dao = new PlataformaDAO();
+            
+            return dao.editar(plataforma, id);
+        }
+        catch(Exception ex)
+        {
+            new Log(plataforma, Helpers.Mensagem.ErroEditarPlataforma(), ex.getMessage()).print();
+            return false;
+        }
     }
     
     public static boolean excluir(int id)
     {
-        
-        return false;
+        try
+        {
+            if(id <= 0)
+                return false;
+            
+            PlataformaDAO dao = new PlataformaDAO();
+            
+            return dao.remover(id);
+        }
+        catch(Exception ex)
+        {
+            new Log(id, Helpers.Mensagem.ErroRemoverPlataforma(), ex.getMessage()).print();
+            return false;
+        }
     }
 }

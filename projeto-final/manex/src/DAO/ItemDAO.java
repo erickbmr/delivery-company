@@ -170,9 +170,9 @@ public class ItemDAO
         }
     }
     
-    public int getId(Item i, Connection connection)
+    public int getId(Item i)
     {
-        try
+        try(Connection connection = ConnectionDB.getConnection())
         {
             String query = "SELECT id FROM " + this.nomeTabela + " WHERE ("
                     + "descricao = ? AND eh_fragil = ? AND volume = ? AND valor_item = ? AND "
