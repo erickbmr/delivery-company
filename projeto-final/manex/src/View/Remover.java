@@ -9,12 +9,12 @@ package View;
  *
  * @author erick_w45c3
  */
-public class Home extends javax.swing.JFrame {
+public class Remover extends javax.swing.JFrame {
 
     /**
-     * Creates new form Home
+     * Creates new form Remover
      */
-    public Home() {
+    public Remover() {
         initComponents();
     }
 
@@ -32,26 +32,21 @@ public class Home extends javax.swing.JFrame {
         cadastroBtn = new javax.swing.JButton();
         listaBtn = new javax.swing.JButton();
         edicaoBtn = new javax.swing.JButton();
-        removeBtn = new javax.swing.JButton();
         configBtn = new javax.swing.JButton();
-        backgroundPane = new javax.swing.JTabbedPane();
-        dashPane = new javax.swing.JPanel();
-        postadoPane = new javax.swing.JPanel();
-        alocandoPane = new javax.swing.JPanel();
-        saiuPane = new javax.swing.JPanel();
-        entreguePane = new javax.swing.JPanel();
+        homeBtn = new javax.swing.JButton();
+        JTabbedPanel1 = new javax.swing.JTabbedPane();
+        plataformaRemove = new javax.swing.JPanel();
+        destinatarioRemove = new javax.swing.JPanel();
+        itemRemove = new javax.swing.JPanel();
+        servicoRemove = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        background.setBackground(new java.awt.Color(255, 255, 255));
 
         sideMenu.setBackground(new java.awt.Color(102, 0, 102));
 
         cadastroBtn.setBackground(new java.awt.Color(102, 0, 102));
         cadastroBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\plus.png")); // NOI18N
         cadastroBtn.setBorderPainted(false);
-        cadastroBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cadastroBtn.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
 
         listaBtn.setBackground(new java.awt.Color(102, 0, 102));
         listaBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\list.png")); // NOI18N
@@ -61,13 +56,13 @@ public class Home extends javax.swing.JFrame {
         edicaoBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\pencil.png")); // NOI18N
         edicaoBtn.setBorderPainted(false);
 
-        removeBtn.setBackground(new java.awt.Color(102, 0, 102));
-        removeBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\remove.png")); // NOI18N
-        removeBtn.setBorderPainted(false);
-
         configBtn.setBackground(new java.awt.Color(102, 0, 102));
         configBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\settings.png")); // NOI18N
         configBtn.setBorderPainted(false);
+
+        homeBtn.setBackground(new java.awt.Color(102, 0, 102));
+        homeBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\home.png")); // NOI18N
+        homeBtn.setBorderPainted(false);
 
         javax.swing.GroupLayout sideMenuLayout = new javax.swing.GroupLayout(sideMenu);
         sideMenu.setLayout(sideMenuLayout);
@@ -76,18 +71,18 @@ public class Home extends javax.swing.JFrame {
             .addComponent(cadastroBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(listaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(edicaoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(removeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(configBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(homeBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sideMenuLayout.setVerticalGroup(
             sideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideMenuLayout.createSequentialGroup()
                 .addGap(86, 86, 86)
+                .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cadastroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edicaoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -95,91 +90,69 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        backgroundPane.setBackground(new java.awt.Color(102, 0, 102));
-        backgroundPane.setToolTipText("");
-        backgroundPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        backgroundPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        backgroundPane.setOpaque(true);
+        JTabbedPanel1.setBackground(new java.awt.Color(102, 0, 102));
+        JTabbedPanel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        JTabbedPanel1.setOpaque(true);
 
-        dashPane.setBackground(new java.awt.Color(255, 255, 255));
-        dashPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        plataformaRemove.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout dashPaneLayout = new javax.swing.GroupLayout(dashPane);
-        dashPane.setLayout(dashPaneLayout);
-        dashPaneLayout.setHorizontalGroup(
-            dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout plataformaRemoveLayout = new javax.swing.GroupLayout(plataformaRemove);
+        plataformaRemove.setLayout(plataformaRemoveLayout);
+        plataformaRemoveLayout.setHorizontalGroup(
+            plataformaRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        dashPaneLayout.setVerticalGroup(
-            dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        plataformaRemoveLayout.setVerticalGroup(
+            plataformaRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Dashboard", dashPane);
+        JTabbedPanel1.addTab("Plataforma", plataformaRemove);
 
-        postadoPane.setBackground(new java.awt.Color(255, 255, 255));
-        postadoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        destinatarioRemove.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout postadoPaneLayout = new javax.swing.GroupLayout(postadoPane);
-        postadoPane.setLayout(postadoPaneLayout);
-        postadoPaneLayout.setHorizontalGroup(
-            postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout destinatarioRemoveLayout = new javax.swing.GroupLayout(destinatarioRemove);
+        destinatarioRemove.setLayout(destinatarioRemoveLayout);
+        destinatarioRemoveLayout.setHorizontalGroup(
+            destinatarioRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        postadoPaneLayout.setVerticalGroup(
-            postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        destinatarioRemoveLayout.setVerticalGroup(
+            destinatarioRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Postado", postadoPane);
+        JTabbedPanel1.addTab("Destinatário", destinatarioRemove);
 
-        alocandoPane.setBackground(new java.awt.Color(255, 255, 255));
-        alocandoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemRemove.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout alocandoPaneLayout = new javax.swing.GroupLayout(alocandoPane);
-        alocandoPane.setLayout(alocandoPaneLayout);
-        alocandoPaneLayout.setHorizontalGroup(
-            alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout itemRemoveLayout = new javax.swing.GroupLayout(itemRemove);
+        itemRemove.setLayout(itemRemoveLayout);
+        itemRemoveLayout.setHorizontalGroup(
+            itemRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        alocandoPaneLayout.setVerticalGroup(
-            alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        itemRemoveLayout.setVerticalGroup(
+            itemRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Alocando", alocandoPane);
+        JTabbedPanel1.addTab("Item", itemRemove);
 
-        saiuPane.setBackground(new java.awt.Color(255, 255, 255));
-        saiuPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        servicoRemove.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout saiuPaneLayout = new javax.swing.GroupLayout(saiuPane);
-        saiuPane.setLayout(saiuPaneLayout);
-        saiuPaneLayout.setHorizontalGroup(
-            saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout servicoRemoveLayout = new javax.swing.GroupLayout(servicoRemove);
+        servicoRemove.setLayout(servicoRemoveLayout);
+        servicoRemoveLayout.setHorizontalGroup(
+            servicoRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        saiuPaneLayout.setVerticalGroup(
-            saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        servicoRemoveLayout.setVerticalGroup(
+            servicoRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Saiu para entrega", saiuPane);
-
-        entreguePane.setBackground(new java.awt.Color(255, 255, 255));
-        entreguePane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        javax.swing.GroupLayout entreguePaneLayout = new javax.swing.GroupLayout(entreguePane);
-        entreguePane.setLayout(entreguePaneLayout);
-        entreguePaneLayout.setHorizontalGroup(
-            entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
-        );
-        entreguePaneLayout.setVerticalGroup(
-            entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
-        );
-
-        backgroundPane.addTab("Entregues", entreguePane);
+        JTabbedPanel1.addTab("Requisição de serviço", servicoRemove);
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -187,13 +160,13 @@ public class Home extends javax.swing.JFrame {
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(sideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backgroundPane, javax.swing.GroupLayout.PREFERRED_SIZE, 732, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JTabbedPanel1))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(backgroundPane)
+            .addComponent(JTabbedPanel1)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -227,37 +200,36 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Remover.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Remover.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Remover.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Remover.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Remover().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel alocandoPane;
+    private javax.swing.JTabbedPane JTabbedPanel1;
     private javax.swing.JPanel background;
-    private javax.swing.JTabbedPane backgroundPane;
     private javax.swing.JButton cadastroBtn;
     private javax.swing.JButton configBtn;
-    private javax.swing.JPanel dashPane;
+    private javax.swing.JPanel destinatarioRemove;
     private javax.swing.JButton edicaoBtn;
-    private javax.swing.JPanel entreguePane;
+    private javax.swing.JButton homeBtn;
+    private javax.swing.JPanel itemRemove;
     private javax.swing.JButton listaBtn;
-    private javax.swing.JPanel postadoPane;
-    private javax.swing.JButton removeBtn;
-    private javax.swing.JPanel saiuPane;
+    private javax.swing.JPanel plataformaRemove;
+    private javax.swing.JPanel servicoRemove;
     private javax.swing.JPanel sideMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,12 +9,12 @@ package View;
  *
  * @author erick_w45c3
  */
-public class Home extends javax.swing.JFrame {
+public class Listar extends javax.swing.JFrame {
 
     /**
-     * Creates new form Home
+     * Creates new form Listar
      */
-    public Home() {
+    public Listar() {
         initComponents();
     }
 
@@ -30,32 +30,26 @@ public class Home extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         sideMenu = new javax.swing.JPanel();
         cadastroBtn = new javax.swing.JButton();
-        listaBtn = new javax.swing.JButton();
         edicaoBtn = new javax.swing.JButton();
         removeBtn = new javax.swing.JButton();
         configBtn = new javax.swing.JButton();
-        backgroundPane = new javax.swing.JTabbedPane();
-        dashPane = new javax.swing.JPanel();
-        postadoPane = new javax.swing.JPanel();
-        alocandoPane = new javax.swing.JPanel();
-        saiuPane = new javax.swing.JPanel();
-        entreguePane = new javax.swing.JPanel();
+        homeBtn = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        plataformaList = new javax.swing.JPanel();
+        destinatarioList = new javax.swing.JPanel();
+        itemList = new javax.swing.JPanel();
+        servicoList = new javax.swing.JPanel();
+        depositoList = new javax.swing.JPanel();
+        funcionarioList = new javax.swing.JPanel();
+        veiculoList = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        background.setBackground(new java.awt.Color(255, 255, 255));
 
         sideMenu.setBackground(new java.awt.Color(102, 0, 102));
 
         cadastroBtn.setBackground(new java.awt.Color(102, 0, 102));
         cadastroBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\plus.png")); // NOI18N
         cadastroBtn.setBorderPainted(false);
-        cadastroBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cadastroBtn.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-
-        listaBtn.setBackground(new java.awt.Color(102, 0, 102));
-        listaBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\list.png")); // NOI18N
-        listaBtn.setBorderPainted(false);
 
         edicaoBtn.setBackground(new java.awt.Color(102, 0, 102));
         edicaoBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\pencil.png")); // NOI18N
@@ -69,117 +63,144 @@ public class Home extends javax.swing.JFrame {
         configBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\settings.png")); // NOI18N
         configBtn.setBorderPainted(false);
 
+        homeBtn.setBackground(new java.awt.Color(102, 0, 102));
+        homeBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\home.png")); // NOI18N
+        homeBtn.setBorderPainted(false);
+
         javax.swing.GroupLayout sideMenuLayout = new javax.swing.GroupLayout(sideMenu);
         sideMenu.setLayout(sideMenuLayout);
         sideMenuLayout.setHorizontalGroup(
             sideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(cadastroBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(listaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(edicaoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(removeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(configBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(homeBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sideMenuLayout.setVerticalGroup(
             sideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideMenuLayout.createSequentialGroup()
                 .addGap(86, 86, 86)
+                .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cadastroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edicaoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(configBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        backgroundPane.setBackground(new java.awt.Color(102, 0, 102));
-        backgroundPane.setToolTipText("");
-        backgroundPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        backgroundPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        backgroundPane.setOpaque(true);
+        jTabbedPane1.setBackground(new java.awt.Color(102, 0, 102));
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTabbedPane1.setOpaque(true);
 
-        dashPane.setBackground(new java.awt.Color(255, 255, 255));
-        dashPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        plataformaList.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout dashPaneLayout = new javax.swing.GroupLayout(dashPane);
-        dashPane.setLayout(dashPaneLayout);
-        dashPaneLayout.setHorizontalGroup(
-            dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout plataformaListLayout = new javax.swing.GroupLayout(plataformaList);
+        plataformaList.setLayout(plataformaListLayout);
+        plataformaListLayout.setHorizontalGroup(
+            plataformaListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        dashPaneLayout.setVerticalGroup(
-            dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        plataformaListLayout.setVerticalGroup(
+            plataformaListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Dashboard", dashPane);
+        jTabbedPane1.addTab("Plataforma", plataformaList);
 
-        postadoPane.setBackground(new java.awt.Color(255, 255, 255));
-        postadoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        destinatarioList.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout postadoPaneLayout = new javax.swing.GroupLayout(postadoPane);
-        postadoPane.setLayout(postadoPaneLayout);
-        postadoPaneLayout.setHorizontalGroup(
-            postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout destinatarioListLayout = new javax.swing.GroupLayout(destinatarioList);
+        destinatarioList.setLayout(destinatarioListLayout);
+        destinatarioListLayout.setHorizontalGroup(
+            destinatarioListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        postadoPaneLayout.setVerticalGroup(
-            postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        destinatarioListLayout.setVerticalGroup(
+            destinatarioListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Postado", postadoPane);
+        jTabbedPane1.addTab("Destinatário", destinatarioList);
 
-        alocandoPane.setBackground(new java.awt.Color(255, 255, 255));
-        alocandoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemList.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout alocandoPaneLayout = new javax.swing.GroupLayout(alocandoPane);
-        alocandoPane.setLayout(alocandoPaneLayout);
-        alocandoPaneLayout.setHorizontalGroup(
-            alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout itemListLayout = new javax.swing.GroupLayout(itemList);
+        itemList.setLayout(itemListLayout);
+        itemListLayout.setHorizontalGroup(
+            itemListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        alocandoPaneLayout.setVerticalGroup(
-            alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        itemListLayout.setVerticalGroup(
+            itemListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Alocando", alocandoPane);
+        jTabbedPane1.addTab("Item", itemList);
 
-        saiuPane.setBackground(new java.awt.Color(255, 255, 255));
-        saiuPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        servicoList.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout saiuPaneLayout = new javax.swing.GroupLayout(saiuPane);
-        saiuPane.setLayout(saiuPaneLayout);
-        saiuPaneLayout.setHorizontalGroup(
-            saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout servicoListLayout = new javax.swing.GroupLayout(servicoList);
+        servicoList.setLayout(servicoListLayout);
+        servicoListLayout.setHorizontalGroup(
+            servicoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        saiuPaneLayout.setVerticalGroup(
-            saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        servicoListLayout.setVerticalGroup(
+            servicoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Saiu para entrega", saiuPane);
+        jTabbedPane1.addTab("Requisição de serviço", servicoList);
 
-        entreguePane.setBackground(new java.awt.Color(255, 255, 255));
-        entreguePane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        depositoList.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout entreguePaneLayout = new javax.swing.GroupLayout(entreguePane);
-        entreguePane.setLayout(entreguePaneLayout);
-        entreguePaneLayout.setHorizontalGroup(
-            entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+        javax.swing.GroupLayout depositoListLayout = new javax.swing.GroupLayout(depositoList);
+        depositoList.setLayout(depositoListLayout);
+        depositoListLayout.setHorizontalGroup(
+            depositoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
-        entreguePaneLayout.setVerticalGroup(
-            entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        depositoListLayout.setVerticalGroup(
+            depositoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 385, Short.MAX_VALUE)
         );
 
-        backgroundPane.addTab("Entregues", entreguePane);
+        jTabbedPane1.addTab("Depósito", depositoList);
+
+        funcionarioList.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout funcionarioListLayout = new javax.swing.GroupLayout(funcionarioList);
+        funcionarioList.setLayout(funcionarioListLayout);
+        funcionarioListLayout.setHorizontalGroup(
+            funcionarioListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
+        );
+        funcionarioListLayout.setVerticalGroup(
+            funcionarioListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 385, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Funcionário", funcionarioList);
+
+        veiculoList.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout veiculoListLayout = new javax.swing.GroupLayout(veiculoList);
+        veiculoList.setLayout(veiculoListLayout);
+        veiculoListLayout.setHorizontalGroup(
+            veiculoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
+        );
+        veiculoListLayout.setVerticalGroup(
+            veiculoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 385, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Veículo", veiculoList);
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -187,13 +208,13 @@ public class Home extends javax.swing.JFrame {
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(sideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backgroundPane, javax.swing.GroupLayout.PREFERRED_SIZE, 732, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(backgroundPane)
+            .addComponent(jTabbedPane1)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -227,37 +248,39 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Listar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel alocandoPane;
     private javax.swing.JPanel background;
-    private javax.swing.JTabbedPane backgroundPane;
     private javax.swing.JButton cadastroBtn;
     private javax.swing.JButton configBtn;
-    private javax.swing.JPanel dashPane;
+    private javax.swing.JPanel depositoList;
+    private javax.swing.JPanel destinatarioList;
     private javax.swing.JButton edicaoBtn;
-    private javax.swing.JPanel entreguePane;
-    private javax.swing.JButton listaBtn;
-    private javax.swing.JPanel postadoPane;
+    private javax.swing.JPanel funcionarioList;
+    private javax.swing.JButton homeBtn;
+    private javax.swing.JPanel itemList;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel plataformaList;
     private javax.swing.JButton removeBtn;
-    private javax.swing.JPanel saiuPane;
+    private javax.swing.JPanel servicoList;
     private javax.swing.JPanel sideMenu;
+    private javax.swing.JPanel veiculoList;
     // End of variables declaration//GEN-END:variables
 }
