@@ -36,14 +36,47 @@ public class Home extends javax.swing.JFrame {
         configBtn = new javax.swing.JButton();
         backgroundPane = new javax.swing.JTabbedPane();
         dashPane = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        totalPedidosLbl = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        pedidosHojeLbl = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        porcentagemEntreguesLbl = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        totalFuncionariosLbl = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        funcionariosAlocadosLbl = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        mediaTempoEntregaLbl = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        pedidosPostadosLbl = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        pedidosAlocacaoLbl = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        pedidosEmRotaLbl = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        pedidosEntreguesLbl = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pedidosEmRotaTable = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        ocorrenciasLbl = new javax.swing.JLabel();
         postadoPane = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        postadosTable = new javax.swing.JTable();
         alocandoPane = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        alocandoTable = new javax.swing.JTable();
         saiuPane = new javax.swing.JPanel();
+        emRotaTable = new javax.swing.JScrollPane();
+        entregandoTable = new javax.swing.JTable();
         entreguePane = new javax.swing.JPanel();
+        entreguesTable = new javax.swing.JScrollPane();
+        entregueTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        background.setBackground(new java.awt.Color(255, 255, 255));
+        background.setBackground(new java.awt.Color(102, 0, 102));
 
         sideMenu.setBackground(new java.awt.Color(102, 0, 102));
 
@@ -66,7 +99,7 @@ public class Home extends javax.swing.JFrame {
         removeBtn.setBorderPainted(false);
 
         configBtn.setBackground(new java.awt.Color(102, 0, 102));
-        configBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\settings.png")); // NOI18N
+        configBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\play.png")); // NOI18N
         configBtn.setBorderPainted(false);
 
         javax.swing.GroupLayout sideMenuLayout = new javax.swing.GroupLayout(sideMenu);
@@ -104,15 +137,214 @@ public class Home extends javax.swing.JFrame {
         dashPane.setBackground(new java.awt.Color(255, 255, 255));
         dashPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Número total de pedidos: ");
+
+        totalPedidosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        totalPedidosLbl.setText("0");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Número de pedidos recebidos hoje: ");
+
+        pedidosHojeLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pedidosHojeLbl.setText("0");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Porcentagem de pedidos entregues:");
+
+        porcentagemEntreguesLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        porcentagemEntreguesLbl.setText("0%");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Número total de funcionários:");
+
+        totalFuncionariosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        totalFuncionariosLbl.setText("0");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Número de funcionários alocados:");
+
+        funcionariosAlocadosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        funcionariosAlocadosLbl.setText("0");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setText("Média de tempo de entrega geral:");
+
+        mediaTempoEntregaLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mediaTempoEntregaLbl.setText("0");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("Número de pedidos recentemente postados: ");
+
+        pedidosPostadosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pedidosPostadosLbl.setText("0");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setText("Número de pedidos em alocação:");
+
+        pedidosAlocacaoLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pedidosAlocacaoLbl.setText("0");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setText("Número de pedidos em rota de entrega:");
+
+        pedidosEmRotaLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pedidosEmRotaLbl.setText("0");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setText("Número de pedidos entregues:");
+
+        pedidosEntreguesLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pedidosEntreguesLbl.setText("0");
+
+        pedidosEmRotaTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Destinatario", "Funcionario", "Valor Frete"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(pedidosEmRotaTable);
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setText("Últimos pedidos em rota de entrega");
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel22.setText("Número de ocorrências:");
+
+        ocorrenciasLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ocorrenciasLbl.setText("0");
+
         javax.swing.GroupLayout dashPaneLayout = new javax.swing.GroupLayout(dashPane);
         dashPane.setLayout(dashPaneLayout);
         dashPaneLayout.setHorizontalGroup(
             dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGroup(dashPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalPedidosLbl))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(porcentagemEntreguesLbl)
+                            .addComponent(pedidosHojeLbl)))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pedidosEntreguesLbl))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pedidosPostadosLbl))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pedidosAlocacaoLbl))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pedidosEmRotaLbl))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addGap(18, 18, 18)
+                        .addComponent(ocorrenciasLbl)))
+                .addGap(17, 17, 17)
+                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel21))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dashPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalFuncionariosLbl))
+                            .addGroup(dashPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(funcionariosAlocadosLbl))
+                            .addGroup(dashPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mediaTempoEntregaLbl)))
+                        .addGap(26, 26, 26)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         dashPaneLayout.setVerticalGroup(
             dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(dashPaneLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(totalPedidosLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(pedidosHojeLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(porcentagemEntreguesLbl)))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(totalFuncionariosLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(funcionariosAlocadosLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(mediaTempoEntregaLbl))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(pedidosPostadosLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(pedidosAlocacaoLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(pedidosEmRotaLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(pedidosEntreguesLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel22)
+                            .addComponent(ocorrenciasLbl)))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
         );
 
         backgroundPane.addTab("Dashboard", dashPane);
@@ -120,15 +352,42 @@ public class Home extends javax.swing.JFrame {
         postadoPane.setBackground(new java.awt.Color(255, 255, 255));
         postadoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        postadosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Plataforma", "Destinatario", "Volume", "Valor Frete", "Valor Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(postadosTable);
+
         javax.swing.GroupLayout postadoPaneLayout = new javax.swing.GroupLayout(postadoPane);
         postadoPane.setLayout(postadoPaneLayout);
         postadoPaneLayout.setHorizontalGroup(
             postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGroup(postadoPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
         );
         postadoPaneLayout.setVerticalGroup(
             postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(postadoPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         backgroundPane.addTab("Postado", postadoPane);
@@ -136,15 +395,42 @@ public class Home extends javax.swing.JFrame {
         alocandoPane.setBackground(new java.awt.Color(255, 255, 255));
         alocandoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        alocandoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Destinatario", "Plataforma", "CEP Depósito", "Volume"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(alocandoTable);
+
         javax.swing.GroupLayout alocandoPaneLayout = new javax.swing.GroupLayout(alocandoPane);
         alocandoPane.setLayout(alocandoPaneLayout);
         alocandoPaneLayout.setHorizontalGroup(
             alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGroup(alocandoPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
         );
         alocandoPaneLayout.setVerticalGroup(
             alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(alocandoPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         backgroundPane.addTab("Alocando", alocandoPane);
@@ -152,15 +438,42 @@ public class Home extends javax.swing.JFrame {
         saiuPane.setBackground(new java.awt.Color(255, 255, 255));
         saiuPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        entregandoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Destinatario", "Plataforma", "Funcionário", "Endereço"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        emRotaTable.setViewportView(entregandoTable);
+
         javax.swing.GroupLayout saiuPaneLayout = new javax.swing.GroupLayout(saiuPane);
         saiuPane.setLayout(saiuPaneLayout);
         saiuPaneLayout.setHorizontalGroup(
             saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGroup(saiuPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(emRotaTable, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
         );
         saiuPaneLayout.setVerticalGroup(
             saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(saiuPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(emRotaTable, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         backgroundPane.addTab("Saiu para entrega", saiuPane);
@@ -168,15 +481,42 @@ public class Home extends javax.swing.JFrame {
         entreguePane.setBackground(new java.awt.Color(255, 255, 255));
         entreguePane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        entregueTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Destinatário", "Plataforma", "Hora da entrega", "Valor Total", "Valor Frete"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        entreguesTable.setViewportView(entregueTable);
+
         javax.swing.GroupLayout entreguePaneLayout = new javax.swing.GroupLayout(entreguePane);
         entreguePane.setLayout(entreguePaneLayout);
         entreguePaneLayout.setHorizontalGroup(
             entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGroup(entreguePaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(entreguesTable, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
         );
         entreguePaneLayout.setVerticalGroup(
             entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(entreguePaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(entreguesTable, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         backgroundPane.addTab("Entregues", entreguePane);
@@ -193,7 +533,7 @@ public class Home extends javax.swing.JFrame {
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(backgroundPane)
+            .addComponent(backgroundPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,17 +587,50 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel alocandoPane;
+    private javax.swing.JTable alocandoTable;
     private javax.swing.JPanel background;
     private javax.swing.JTabbedPane backgroundPane;
     private javax.swing.JButton cadastroBtn;
     private javax.swing.JButton configBtn;
     private javax.swing.JPanel dashPane;
     private javax.swing.JButton edicaoBtn;
+    private javax.swing.JScrollPane emRotaTable;
+    private javax.swing.JTable entregandoTable;
     private javax.swing.JPanel entreguePane;
+    private javax.swing.JTable entregueTable;
+    private javax.swing.JScrollPane entreguesTable;
+    private javax.swing.JLabel funcionariosAlocadosLbl;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton listaBtn;
+    private javax.swing.JLabel mediaTempoEntregaLbl;
+    private javax.swing.JLabel ocorrenciasLbl;
+    private javax.swing.JLabel pedidosAlocacaoLbl;
+    private javax.swing.JLabel pedidosEmRotaLbl;
+    private javax.swing.JTable pedidosEmRotaTable;
+    private javax.swing.JLabel pedidosEntreguesLbl;
+    private javax.swing.JLabel pedidosHojeLbl;
+    private javax.swing.JLabel pedidosPostadosLbl;
+    private javax.swing.JLabel porcentagemEntreguesLbl;
     private javax.swing.JPanel postadoPane;
+    private javax.swing.JTable postadosTable;
     private javax.swing.JButton removeBtn;
     private javax.swing.JPanel saiuPane;
     private javax.swing.JPanel sideMenu;
+    private javax.swing.JLabel totalFuncionariosLbl;
+    private javax.swing.JLabel totalPedidosLbl;
     // End of variables declaration//GEN-END:variables
 }

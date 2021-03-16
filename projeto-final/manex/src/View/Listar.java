@@ -36,14 +36,30 @@ public class Listar extends javax.swing.JFrame {
         homeBtn = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         plataformaList = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        plataformasTable = new javax.swing.JTable();
         destinatarioList = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        destinatariosTable = new javax.swing.JTable();
         itemList = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        itensTable = new javax.swing.JTable();
         servicoList = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        servicosTable = new javax.swing.JTable();
         depositoList = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        depositosTable = new javax.swing.JTable();
         funcionarioList = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        funcionariosTable = new javax.swing.JTable();
         veiculoList = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        veiculosTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        background.setBackground(new java.awt.Color(102, 0, 102));
 
         sideMenu.setBackground(new java.awt.Color(102, 0, 102));
 
@@ -60,7 +76,7 @@ public class Listar extends javax.swing.JFrame {
         removeBtn.setBorderPainted(false);
 
         configBtn.setBackground(new java.awt.Color(102, 0, 102));
-        configBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\settings.png")); // NOI18N
+        configBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\play.png")); // NOI18N
         configBtn.setBorderPainted(false);
 
         homeBtn.setBackground(new java.awt.Color(102, 0, 102));
@@ -99,105 +115,238 @@ public class Listar extends javax.swing.JFrame {
 
         plataformaList.setBackground(new java.awt.Color(255, 255, 255));
 
+        plataformasTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(plataformasTable);
+
         javax.swing.GroupLayout plataformaListLayout = new javax.swing.GroupLayout(plataformaList);
         plataformaList.setLayout(plataformaListLayout);
         plataformaListLayout.setHorizontalGroup(
             plataformaListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(plataformaListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
         );
         plataformaListLayout.setVerticalGroup(
             plataformaListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(plataformaListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Plataforma", plataformaList);
 
         destinatarioList.setBackground(new java.awt.Color(255, 255, 255));
 
+        destinatariosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(destinatariosTable);
+
         javax.swing.GroupLayout destinatarioListLayout = new javax.swing.GroupLayout(destinatarioList);
         destinatarioList.setLayout(destinatarioListLayout);
         destinatarioListLayout.setHorizontalGroup(
             destinatarioListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(destinatarioListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
         );
         destinatarioListLayout.setVerticalGroup(
             destinatarioListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(destinatarioListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Destinatário", destinatarioList);
 
         itemList.setBackground(new java.awt.Color(255, 255, 255));
 
+        itensTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(itensTable);
+
         javax.swing.GroupLayout itemListLayout = new javax.swing.GroupLayout(itemList);
         itemList.setLayout(itemListLayout);
         itemListLayout.setHorizontalGroup(
             itemListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(itemListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
         );
         itemListLayout.setVerticalGroup(
             itemListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(itemListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Item", itemList);
 
         servicoList.setBackground(new java.awt.Color(255, 255, 255));
 
+        servicosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(servicosTable);
+
         javax.swing.GroupLayout servicoListLayout = new javax.swing.GroupLayout(servicoList);
         servicoList.setLayout(servicoListLayout);
         servicoListLayout.setHorizontalGroup(
             servicoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(servicoListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
         );
         servicoListLayout.setVerticalGroup(
             servicoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(servicoListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Requisição de serviço", servicoList);
 
         depositoList.setBackground(new java.awt.Color(255, 255, 255));
 
+        depositosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(depositosTable);
+
         javax.swing.GroupLayout depositoListLayout = new javax.swing.GroupLayout(depositoList);
         depositoList.setLayout(depositoListLayout);
         depositoListLayout.setHorizontalGroup(
             depositoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(depositoListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
         );
         depositoListLayout.setVerticalGroup(
             depositoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(depositoListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Depósito", depositoList);
 
         funcionarioList.setBackground(new java.awt.Color(255, 255, 255));
 
+        funcionariosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(funcionariosTable);
+
         javax.swing.GroupLayout funcionarioListLayout = new javax.swing.GroupLayout(funcionarioList);
         funcionarioList.setLayout(funcionarioListLayout);
         funcionarioListLayout.setHorizontalGroup(
             funcionarioListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(funcionarioListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
         );
         funcionarioListLayout.setVerticalGroup(
             funcionarioListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(funcionarioListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Funcionário", funcionarioList);
 
         veiculoList.setBackground(new java.awt.Color(255, 255, 255));
 
+        veiculosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(veiculosTable);
+
         javax.swing.GroupLayout veiculoListLayout = new javax.swing.GroupLayout(veiculoList);
         veiculoList.setLayout(veiculoListLayout);
         veiculoListLayout.setHorizontalGroup(
             veiculoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(veiculoListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
         );
         veiculoListLayout.setVerticalGroup(
             veiculoListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(veiculoListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Veículo", veiculoList);
@@ -214,7 +363,7 @@ public class Listar extends javax.swing.JFrame {
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,16 +420,30 @@ public class Listar extends javax.swing.JFrame {
     private javax.swing.JButton cadastroBtn;
     private javax.swing.JButton configBtn;
     private javax.swing.JPanel depositoList;
+    private javax.swing.JTable depositosTable;
     private javax.swing.JPanel destinatarioList;
+    private javax.swing.JTable destinatariosTable;
     private javax.swing.JButton edicaoBtn;
     private javax.swing.JPanel funcionarioList;
+    private javax.swing.JTable funcionariosTable;
     private javax.swing.JButton homeBtn;
     private javax.swing.JPanel itemList;
+    private javax.swing.JTable itensTable;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel plataformaList;
+    private javax.swing.JTable plataformasTable;
     private javax.swing.JButton removeBtn;
     private javax.swing.JPanel servicoList;
+    private javax.swing.JTable servicosTable;
     private javax.swing.JPanel sideMenu;
     private javax.swing.JPanel veiculoList;
+    private javax.swing.JTable veiculosTable;
     // End of variables declaration//GEN-END:variables
 }
