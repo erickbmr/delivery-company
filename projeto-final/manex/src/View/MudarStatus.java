@@ -39,7 +39,7 @@ public class MudarStatus extends javax.swing.JFrame {
         cancelarBtn = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(778, 416));
+        setPreferredSize(new java.awt.Dimension(778, 390));
 
         background.setBackground(new java.awt.Color(102, 0, 102));
 

@@ -61,6 +61,8 @@ public class Home extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         ocorrenciasLbl = new javax.swing.JLabel();
+        jlabelValor = new javax.swing.JLabel();
+        valorTotalRecebidoLbl = new javax.swing.JLabel();
         postadoPane = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         postadosTable = new javax.swing.JTable();
@@ -227,6 +229,12 @@ public class Home extends javax.swing.JFrame {
         ocorrenciasLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ocorrenciasLbl.setText("0");
 
+        jlabelValor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlabelValor.setText("Valor total recebido:");
+
+        valorTotalRecebidoLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        valorTotalRecebidoLbl.setText("R$0");
+
         javax.swing.GroupLayout dashPaneLayout = new javax.swing.GroupLayout(dashPane);
         dashPane.setLayout(dashPaneLayout);
         dashPaneLayout.setHorizontalGroup(
@@ -235,57 +243,63 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dashPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(totalPedidosLbl))
-                    .addGroup(dashPaneLayout.createSequentialGroup()
-                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(porcentagemEntreguesLbl)
-                            .addComponent(pedidosHojeLbl)))
-                    .addGroup(dashPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pedidosEntreguesLbl))
-                    .addGroup(dashPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pedidosPostadosLbl))
-                    .addGroup(dashPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pedidosAlocacaoLbl))
-                    .addGroup(dashPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pedidosEmRotaLbl))
-                    .addGroup(dashPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addGap(18, 18, 18)
-                        .addComponent(ocorrenciasLbl)))
-                .addGap(17, 17, 17)
-                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel21))
-                    .addGroup(dashPaneLayout.createSequentialGroup()
                         .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dashPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(totalFuncionariosLbl))
+                                .addComponent(totalPedidosLbl))
                             .addGroup(dashPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(funcionariosAlocadosLbl))
+                                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(porcentagemEntreguesLbl)
+                                    .addComponent(pedidosHojeLbl)))
                             .addGroup(dashPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
+                                .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mediaTempoEntregaLbl)))
-                        .addGap(26, 26, 26)))
+                                .addComponent(pedidosEntreguesLbl))
+                            .addGroup(dashPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pedidosPostadosLbl))
+                            .addGroup(dashPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pedidosAlocacaoLbl))
+                            .addGroup(dashPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pedidosEmRotaLbl))
+                            .addGroup(dashPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(18, 18, 18)
+                                .addComponent(ocorrenciasLbl)))
+                        .addGap(17, 17, 17)
+                        .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel21))
+                            .addGroup(dashPaneLayout.createSequentialGroup()
+                                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(dashPaneLayout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(totalFuncionariosLbl))
+                                    .addGroup(dashPaneLayout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(funcionariosAlocadosLbl))
+                                    .addGroup(dashPaneLayout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(mediaTempoEntregaLbl)))
+                                .addGap(26, 26, 26))))
+                    .addGroup(dashPaneLayout.createSequentialGroup()
+                        .addComponent(jlabelValor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valorTotalRecebidoLbl)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         dashPaneLayout.setVerticalGroup(
@@ -317,7 +331,11 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(mediaTempoEntregaLbl))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabelValor)
+                    .addComponent(valorTotalRecebidoLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dashPaneLayout.createSequentialGroup()
@@ -615,6 +633,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel jlabelValor;
     private javax.swing.JButton listaBtn;
     private javax.swing.JLabel mediaTempoEntregaLbl;
     private javax.swing.JLabel ocorrenciasLbl;
@@ -632,5 +651,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel sideMenu;
     private javax.swing.JLabel totalFuncionariosLbl;
     private javax.swing.JLabel totalPedidosLbl;
+    private javax.swing.JLabel valorTotalRecebidoLbl;
     // End of variables declaration//GEN-END:variables
 }
