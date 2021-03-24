@@ -9,12 +9,12 @@ package View;
  *
  * @author Erick
  */
-public class Home extends javax.swing.JPanel {
+public class ClientRegister extends javax.swing.JPanel {
 
     /**
-     * Creates new form Home
+     * Creates new form ClientRegister
      */
-    public Home() {
+    public ClientRegister() {
         initComponents();
     }
 
@@ -27,7 +27,6 @@ public class Home extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(102, 102, 102));
         setPreferredSize(new java.awt.Dimension(735, 445));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -129,13 +129,15 @@
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="pesoTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="alturaTxt" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="larguraTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="profundidadeTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="valorTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fragilCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="pesoTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="larguraTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="profundidadeTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="valorTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fragilCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">

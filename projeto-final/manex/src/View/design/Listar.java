@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package View.design;
 
 /**
  *
@@ -64,23 +64,18 @@ public class Listar extends javax.swing.JFrame {
         sideMenu.setBackground(new java.awt.Color(102, 0, 102));
 
         cadastroBtn.setBackground(new java.awt.Color(102, 0, 102));
-        cadastroBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\plus.png")); // NOI18N
         cadastroBtn.setBorderPainted(false);
 
         edicaoBtn.setBackground(new java.awt.Color(102, 0, 102));
-        edicaoBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\pencil.png")); // NOI18N
         edicaoBtn.setBorderPainted(false);
 
         removeBtn.setBackground(new java.awt.Color(102, 0, 102));
-        removeBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\remove.png")); // NOI18N
         removeBtn.setBorderPainted(false);
 
         configBtn.setBackground(new java.awt.Color(102, 0, 102));
-        configBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\play.png")); // NOI18N
         configBtn.setBorderPainted(false);
 
         homeBtn.setBackground(new java.awt.Color(102, 0, 102));
-        homeBtn.setIcon(new javax.swing.ImageIcon("E:\\Usuário\\Documentos\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\home.png")); // NOI18N
         homeBtn.setBorderPainted(false);
 
         javax.swing.GroupLayout sideMenuLayout = new javax.swing.GroupLayout(sideMenu);
