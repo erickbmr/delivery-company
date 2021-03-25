@@ -23,7 +23,7 @@ public class ServicoDAO
     {
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
@@ -38,6 +38,7 @@ public class ServicoDAO
             statement.setInt(6, s.getDestinatarioId());
             statement.setInt(7, s.getPlataformaId());
             statement.setInt(8, s.getFuncionarioId());
+            statement.setInt(9, s.getStatus());
             
             int affectedRows = statement.executeUpdate();
             
@@ -79,7 +80,7 @@ public class ServicoDAO
         {
             String query = "UPDATE " + this.nomeTabela + " SET valor_total_frete = ?, "
                     + "prazo_dias = ?, data_limite = ?, data_cadastro = ?, data_agendada = ?, "
-                    + "destinatario_id = ?, plataforma_id = ?, funcionario_id = ? "
+                    + "destinatario_id = ?, plataforma_id = ?, funcionario_id = ?, status = ? "
                     + "WHERE id = ?";
             
             PreparedStatement statement = connection.prepareStatement(query);
@@ -94,7 +95,8 @@ public class ServicoDAO
             statement.setInt(6, s.getDestinatarioId());
             statement.setInt(7, s.getPlataformaId());
             statement.setInt(8, s.getFuncionarioId());
-            statement.setInt(9, id);
+            statement.setInt(9, s.getStatus());
+            statement.setInt(10, id);
             
             int affectedRows = statement.executeUpdate();
             
@@ -133,6 +135,7 @@ public class ServicoDAO
             servico.setDestinatarioId(result.getInt("destinatario_id"));
             servico.setPlataformaId(result.getInt("plataforma_id"));
             servico.setFuncionarioId(result.getInt("funcionario_id"));
+            servico.setStatus(result.getInt("status"));
             
             return servico;
         }
@@ -170,6 +173,7 @@ public class ServicoDAO
                 servico.setDestinatarioId(result.getInt("destinatario_id"));
                 servico.setPlataformaId(result.getInt("plataforma_id"));
                 servico.setFuncionarioId(result.getInt("funcionario_id"));
+                servico.setStatus(result.getInt("status"));
                 servicos.add(servico);
             }
             

@@ -113,4 +113,23 @@ public class PlataformaController
             return false;
         }
     }
+    
+    public static PlataformaCliente get(String CNPJ)
+    {
+        try
+        {
+            if(!Verificador.ehCNPJ(CNPJ))
+                return null;
+            else
+            {
+                PlataformaDAO dao = new PlataformaDAO();
+                return dao.get(CNPJ);
+            }
+        }
+        catch(Exception ex)
+        {
+            new Log(CNPJ, Helpers.Mensagem.ErroRecuperarPlataforma(), ex.getMessage()).print();
+            return null;
+        }
+    }
 }

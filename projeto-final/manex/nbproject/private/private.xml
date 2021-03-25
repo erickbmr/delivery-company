@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/View/ItemRegister.java</file>
-            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/View/FrameApp.java</file>
+            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/DAO/ServicoDAO.java</file>
             <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/View/Home.java</file>
-            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/View/ReceiverRegister.java</file>
-            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/View/ServiceList.java</file>
-            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/View/ClientRegister.java</file>
+            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/View/FrameApp.java</file>
+            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/Main.java</file>
+            <file>file:/D:/Facul/4º%20Período/poo2/delivery-company/delivery-company/projeto-final/manex/src/Models/PlataformaCliente.java</file>
         </group>
     </open-files>
 </project-private>

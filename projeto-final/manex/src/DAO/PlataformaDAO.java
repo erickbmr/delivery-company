@@ -22,14 +22,21 @@ public class PlataformaDAO
     {
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?)";
+            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
             statement.setString(1, p.getDocumento());
             statement.setString(2, p.getTelefone());
             statement.setInt(3, p.getCategoriaId());
-            
+            statement.setString(4, p.getRua());
+            statement.setString(5, p.getBairro());
+            statement.setInt(6, p.getNumero());
+            statement.setString(7, p.getCidade());
+            String estado = Helpers.UnidadeFederativa.getUF(p.getEstado());
+            statement.setString(8, estado);
+
+
             int affectedRows = statement.executeUpdate();
             
             return this.affectARow(affectedRows);
@@ -67,13 +74,20 @@ public class PlataformaDAO
         try(Connection connection = ConnectionDB.getConnection())
         {
             String query = "UPDATE " + this.nomeTabela + " SET documento = ?, "
-                    + "telefone = ?, categoria_id = ? WHERE id = ?";
+                    + "telefone = ?, categoria_id = ?, rua = ?, bairro = ?, numero = ?, "
+                    + "cidade = ?, estado = ? WHERE id = ?";
             
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, p.getDocumento());
             statement.setString(2, p.getTelefone());
             statement.setInt(3, p.getCategoriaId());
-            statement.setInt(4, id);
+            statement.setString(4, p.getRua());
+            statement.setString(5, p.getBairro());
+            statement.setInt(6, p.getNumero());
+            statement.setString(7, p.getCidade());
+            String estado = Helpers.UnidadeFederativa.getUF(p.getEstado());
+            statement.setString(8, estado);
+            statement.setInt(9, id);
             
             int affectedRows = statement.executeUpdate();
             
@@ -83,6 +97,43 @@ public class PlataformaDAO
         {
             new Log(p, "DAO: " + Helpers.Mensagem.ErroEditarPlataforma(), ex.getMessage()).print();
             return false;
+        }
+    }
+    
+    public PlataformaCliente get(String CNPJ)
+    {
+        PlataformaCliente plataforma = null;
+
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT * FROM " + this.nomeTabela + " WHERE documento = '?'";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, CNPJ);
+            
+            statement.execute();
+            
+            ResultSet result = statement.getResultSet();
+            
+            result.next();
+            plataforma = new PlataformaCliente();
+            plataforma.id = result.getInt("id");
+            plataforma.setDocumento(result.getString("documento"));
+            plataforma.setTelefone(result.getString("telefone"));
+            plataforma.setCategoria(result.getInt("categoria_id"));
+            plataforma.setRua(result.getString("rua"));
+            plataforma.setBairro(result.getString("bairro"));
+            plataforma.setNumero(result.getInt("numero"));
+            plataforma.setCidade(result.getString("cidade"));
+            plataforma.setEstado(result.getString("estado"));
+
+            
+            return plataforma;
+        }
+        catch(Exception ex)
+        {
+            new Log(CNPJ, "DAO: " + Helpers.Mensagem.ErroRecuperarPlataforma(), ex.getMessage()).print();
+            return plataforma;
         }
     }
     
@@ -106,6 +157,11 @@ public class PlataformaDAO
             plataforma.setDocumento(result.getString("documento"));
             plataforma.setTelefone(result.getString("telefone"));
             plataforma.setCategoria(result.getInt("categoria_id"));
+            plataforma.setRua(result.getString("rua"));
+            plataforma.setBairro(result.getString("bairro"));
+            plataforma.setNumero(result.getInt("numero"));
+            plataforma.setCidade(result.getString("cidade"));
+            plataforma.setEstado(result.getString("estado"));
 
             return plataforma;
         }
@@ -137,6 +193,11 @@ public class PlataformaDAO
                 plataforma.setDocumento(result.getString("documento"));
                 plataforma.setTelefone(result.getString("telefone"));
                 plataforma.setCategoria(result.getInt("categoria_id"));
+                plataforma.setRua(result.getString("rua"));
+                plataforma.setBairro(result.getString("bairro"));
+                plataforma.setNumero(result.getInt("numero"));
+                plataforma.setCidade(result.getString("cidade"));
+                plataforma.setEstado(result.getString("estado"));
                 plataformas.add(plataforma);
             }
             

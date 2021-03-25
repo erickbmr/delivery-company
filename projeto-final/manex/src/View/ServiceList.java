@@ -30,8 +30,10 @@ public class ServiceList extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         servicosTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        deleteServicoBtn = new javax.swing.JButton();
+        voltarBtn = new javax.swing.JButton();
+        statusBox = new javax.swing.JComboBox<>();
+        mudaStatusBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 0, 102));
         setPreferredSize(new java.awt.Dimension(735, 445));
@@ -42,22 +44,54 @@ public class ServiceList extends javax.swing.JPanel {
 
         servicosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Plataforma", "Destinatario", "Cidade", "Status", "Valor"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(servicosTable);
 
-        jButton1.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
-        jButton1.setText("Excluir serviço");
+        deleteServicoBtn.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
+        deleteServicoBtn.setText("Excluir serviço");
+        deleteServicoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteServicoBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
-        jButton2.setText("Voltar");
+        voltarBtn.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
+        voltarBtn.setText("Voltar");
+        voltarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarBtnActionPerformed(evt);
+            }
+        });
+
+        statusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Postado recentemente", "2 - Em alocação", "3 - Em rota de entrega", "4 - Entregue", "5 - Problema" }));
+        statusBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusBoxActionPerformed(evt);
+            }
+        });
+
+        mudaStatusBtn.setText("Mudar Status");
+        mudaStatusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mudaStatusBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -71,9 +105,13 @@ public class ServiceList extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(voltarBtn)
+                        .addGap(130, 130, 130)
+                        .addComponent(statusBox, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mudaStatusBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(deleteServicoBtn)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,18 +125,38 @@ public class ServiceList extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(voltarBtn)
+                    .addComponent(deleteServicoBtn)
+                    .addComponent(statusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mudaStatusBtn))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
+        FrameApp.changePanel(new Home(), "home");
+    }//GEN-LAST:event_voltarBtnActionPerformed
+
+    private void statusBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusBoxActionPerformed
+        // se começa com um id, depois Helpers.Status
+    }//GEN-LAST:event_statusBoxActionPerformed
+
+    private void deleteServicoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteServicoBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteServicoBtnActionPerformed
+
+    private void mudaStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mudaStatusBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mudaStatusBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton deleteServicoBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton mudaStatusBtn;
     private javax.swing.JTable servicosTable;
+    private javax.swing.JComboBox<String> statusBox;
+    private javax.swing.JButton voltarBtn;
     // End of variables declaration//GEN-END:variables
 }

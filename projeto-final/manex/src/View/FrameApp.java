@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -23,6 +24,9 @@ public class FrameApp extends javax.swing.JFrame {
     public void myInitComponents()
     {
         panelsTable = new HashMap<>();
+        
+        String path = "D:\\Facul\\4º Período\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\truck.png";
+        this.setIconImage(new ImageIcon(path).getImage());
         
         this.setLayout(new BorderLayout());
         this.scrollPanel = new JScrollPane();
@@ -56,19 +60,22 @@ public class FrameApp extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Manager Express");
+        setIconImages(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 735, Short.MAX_VALUE)
+            .addGap(0, 757, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 445, Short.MAX_VALUE)
+            .addGap(0, 463, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

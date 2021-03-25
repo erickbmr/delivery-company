@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class ConnectionDB 
 {
-    private static final String postgresUrl = "jdbc:postgresql://localhost:5432/manex";
+    private static final String postgresUrl = "jdbc:postgresql://localhost:5432/managerdb";
     private static final String user = "postgres";
     private static final String password = "admindb";
     private static Connection connection;

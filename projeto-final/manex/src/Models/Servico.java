@@ -15,13 +15,24 @@ public class Servico
     private Date dataLimite;
     private Date dataCadastro;
     private Date dataAgendada;
-
+    private int status;
+    
     public Servico()
     {
         this.dataCadastro = new Date();
         this.dataAgendada = null;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    
+    
     public int getPrazoEmDias() {
         return prazoEmDias;
     }

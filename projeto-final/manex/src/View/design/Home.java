@@ -35,6 +35,18 @@ public class Home extends javax.swing.JFrame {
         removeBtn = new javax.swing.JButton();
         configBtn = new javax.swing.JButton();
         backgroundPane = new javax.swing.JTabbedPane();
+        postadoPane = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        postadosTable = new javax.swing.JTable();
+        alocandoPane = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        alocandoTable = new javax.swing.JTable();
+        saiuPane = new javax.swing.JPanel();
+        emRotaTable = new javax.swing.JScrollPane();
+        entregandoTable = new javax.swing.JTable();
+        entreguePane = new javax.swing.JPanel();
+        entreguesTable = new javax.swing.JScrollPane();
+        entregueTable = new javax.swing.JTable();
         dashPane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         totalPedidosLbl = new javax.swing.JLabel();
@@ -63,18 +75,6 @@ public class Home extends javax.swing.JFrame {
         ocorrenciasLbl = new javax.swing.JLabel();
         jlabelValor = new javax.swing.JLabel();
         valorTotalRecebidoLbl = new javax.swing.JLabel();
-        postadoPane = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        postadosTable = new javax.swing.JTable();
-        alocandoPane = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        alocandoTable = new javax.swing.JTable();
-        saiuPane = new javax.swing.JPanel();
-        emRotaTable = new javax.swing.JScrollPane();
-        entregandoTable = new javax.swing.JTable();
-        entreguePane = new javax.swing.JPanel();
-        entreguesTable = new javax.swing.JScrollPane();
-        entregueTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,6 +130,178 @@ public class Home extends javax.swing.JFrame {
         backgroundPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         backgroundPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backgroundPane.setOpaque(true);
+
+        postadoPane.setBackground(new java.awt.Color(255, 255, 255));
+        postadoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        postadosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Plataforma", "Destinatario", "Volume", "Valor Frete", "Valor Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(postadosTable);
+
+        javax.swing.GroupLayout postadoPaneLayout = new javax.swing.GroupLayout(postadoPane);
+        postadoPane.setLayout(postadoPaneLayout);
+        postadoPaneLayout.setHorizontalGroup(
+            postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(postadoPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        postadoPaneLayout.setVerticalGroup(
+            postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(postadoPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        backgroundPane.addTab("Postado", postadoPane);
+
+        alocandoPane.setBackground(new java.awt.Color(255, 255, 255));
+        alocandoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        alocandoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Destinatario", "Plataforma", "CEP Depósito", "Volume"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(alocandoTable);
+
+        javax.swing.GroupLayout alocandoPaneLayout = new javax.swing.GroupLayout(alocandoPane);
+        alocandoPane.setLayout(alocandoPaneLayout);
+        alocandoPaneLayout.setHorizontalGroup(
+            alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alocandoPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        alocandoPaneLayout.setVerticalGroup(
+            alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alocandoPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        backgroundPane.addTab("Alocando", alocandoPane);
+
+        saiuPane.setBackground(new java.awt.Color(255, 255, 255));
+        saiuPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        entregandoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Destinatario", "Plataforma", "Funcionário", "Endereço"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        emRotaTable.setViewportView(entregandoTable);
+
+        javax.swing.GroupLayout saiuPaneLayout = new javax.swing.GroupLayout(saiuPane);
+        saiuPane.setLayout(saiuPaneLayout);
+        saiuPaneLayout.setHorizontalGroup(
+            saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saiuPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(emRotaTable, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        saiuPaneLayout.setVerticalGroup(
+            saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saiuPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(emRotaTable, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        backgroundPane.addTab("Saiu para entrega", saiuPane);
+
+        entreguePane.setBackground(new java.awt.Color(255, 255, 255));
+        entreguePane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        entregueTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Destinatário", "Plataforma", "Hora da entrega", "Valor Total", "Valor Frete"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        entreguesTable.setViewportView(entregueTable);
+
+        javax.swing.GroupLayout entreguePaneLayout = new javax.swing.GroupLayout(entreguePane);
+        entreguePane.setLayout(entreguePaneLayout);
+        entreguePaneLayout.setHorizontalGroup(
+            entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(entreguePaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(entreguesTable, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        entreguePaneLayout.setVerticalGroup(
+            entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(entreguePaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(entreguesTable, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        backgroundPane.addTab("Entregues", entreguePane);
 
         dashPane.setBackground(new java.awt.Color(255, 255, 255));
         dashPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -361,178 +533,6 @@ public class Home extends javax.swing.JFrame {
         );
 
         backgroundPane.addTab("Dashboard", dashPane);
-
-        postadoPane.setBackground(new java.awt.Color(255, 255, 255));
-        postadoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        postadosTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Plataforma", "Destinatario", "Volume", "Valor Frete", "Valor Total"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(postadosTable);
-
-        javax.swing.GroupLayout postadoPaneLayout = new javax.swing.GroupLayout(postadoPane);
-        postadoPane.setLayout(postadoPaneLayout);
-        postadoPaneLayout.setHorizontalGroup(
-            postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(postadoPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        postadoPaneLayout.setVerticalGroup(
-            postadoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(postadoPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        backgroundPane.addTab("Postado", postadoPane);
-
-        alocandoPane.setBackground(new java.awt.Color(255, 255, 255));
-        alocandoPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        alocandoTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Destinatario", "Plataforma", "CEP Depósito", "Volume"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(alocandoTable);
-
-        javax.swing.GroupLayout alocandoPaneLayout = new javax.swing.GroupLayout(alocandoPane);
-        alocandoPane.setLayout(alocandoPaneLayout);
-        alocandoPaneLayout.setHorizontalGroup(
-            alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(alocandoPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        alocandoPaneLayout.setVerticalGroup(
-            alocandoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(alocandoPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        backgroundPane.addTab("Alocando", alocandoPane);
-
-        saiuPane.setBackground(new java.awt.Color(255, 255, 255));
-        saiuPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        entregandoTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Destinatario", "Plataforma", "Funcionário", "Endereço"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        emRotaTable.setViewportView(entregandoTable);
-
-        javax.swing.GroupLayout saiuPaneLayout = new javax.swing.GroupLayout(saiuPane);
-        saiuPane.setLayout(saiuPaneLayout);
-        saiuPaneLayout.setHorizontalGroup(
-            saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saiuPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(emRotaTable, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        saiuPaneLayout.setVerticalGroup(
-            saiuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saiuPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(emRotaTable, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        backgroundPane.addTab("Saiu para entrega", saiuPane);
-
-        entreguePane.setBackground(new java.awt.Color(255, 255, 255));
-        entreguePane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        entregueTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Destinatário", "Plataforma", "Hora da entrega", "Valor Total", "Valor Frete"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        entreguesTable.setViewportView(entregueTable);
-
-        javax.swing.GroupLayout entreguePaneLayout = new javax.swing.GroupLayout(entreguePane);
-        entreguePane.setLayout(entreguePaneLayout);
-        entreguePaneLayout.setHorizontalGroup(
-            entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entreguePaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(entreguesTable, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        entreguePaneLayout.setVerticalGroup(
-            entreguePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entreguePaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(entreguesTable, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        backgroundPane.addTab("Entregues", entreguePane);
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
