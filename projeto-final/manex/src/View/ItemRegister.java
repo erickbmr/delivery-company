@@ -5,9 +5,14 @@
  */
 package View;
 
+import Controller.DestinatarioController;
 import Controller.ItemController;
+import Controller.PlataformaController;
+import Controller.ServicoController;
 import Models.Item;
+import Models.Servico;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -15,6 +20,7 @@ public class ItemRegister extends javax.swing.JPanel {
 
     private static Item itemCriado;
     private DefaultListModel<Item> itens;
+    private static double valorServico;
     
     public ItemRegister() {
         initComponents();
@@ -23,6 +29,7 @@ public class ItemRegister extends javax.swing.JPanel {
 
     private void myInitComponents()
     {
+        valorServico = 0;
         itemCriado = new Item();
         this.itens = new DefaultListModel<Item>();
         
@@ -64,7 +71,7 @@ public class ItemRegister extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaItens = new javax.swing.JList<>();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        valorTotalServicoLbl = new javax.swing.JLabel();
         finalizaBtn = new javax.swing.JButton();
         cancelarBtn = new javax.swing.JButton();
         deleteItemBtn = new javax.swing.JButton();
@@ -309,15 +316,16 @@ public class ItemRegister extends javax.swing.JPanel {
                     .addComponent(totalLbl)))
         );
 
+        listaItens.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(listaItens);
 
         jLabel9.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Valor total:");
 
-        jLabel10.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("R$0,00");
+        valorTotalServicoLbl.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        valorTotalServicoLbl.setForeground(new java.awt.Color(255, 255, 255));
+        valorTotalServicoLbl.setText("R$0,00");
 
         finalizaBtn.setText("Finalizar");
         finalizaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +363,7 @@ public class ItemRegister extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
+                                .addComponent(valorTotalServicoLbl)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -382,7 +390,7 @@ public class ItemRegister extends javax.swing.JPanel {
                         .addComponent(deleteItemBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
+                            .addComponent(valorTotalServicoLbl)
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,6 +416,7 @@ public class ItemRegister extends javax.swing.JPanel {
     }//GEN-LAST:event_larguraTxtActionPerformed
 
     private void calculaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculaBtnActionPerformed
+        
         String descricao = descricaoTxt.getText();
         String altura = alturaTxt.getText();
         String largura = larguraTxt.getText();
@@ -440,21 +449,25 @@ public class ItemRegister extends javax.swing.JPanel {
                     valorCalculo += 3;
                 valorCalculo += valorItem * 0.01;
                 
-                double impostos = valorCalculo * 0.08;
+                double impostos = (valorCalculo/100) * 0.03;
                 impostoLbl.setText("R$ " + Math.round(impostos * 100.0)/100.0);
                 
-                double taxas = 9.8 + valorCalculo * 0.1;
+                double taxas = 6.5 + (valorCalculo/100) * 0.01;
                 taxaLbl.setText("R$ " + Math.round(taxas));
                 
-                double precoFrete = taxas + impostos + (valorCalculo / 4);
+                double precoFrete = (taxas + impostos + (valorCalculo / 100))/10;
                 freteLbl.setText("R$ " + Math.round(precoFrete * 100.0)/100.0);
                 
-                totalLbl.setText("R$ " + Math.round((impostos + taxas + precoFrete)*100.0)/100.0);
+                double total = (impostos + taxas + precoFrete);
+                totalLbl.setText("R$ " + Math.round(total * 100.0)/100.0);
                 
-                itemCriado.setValorFrete(precoFrete);
+                valorServico += total;
+                
+                itemCriado.setValorFrete(Math.round(total * 100.0) / 100.0);
                 itemCriado.setValorItem(valorItem);
                 itemCriado.setVolume(volume);
                 itemCriado.setEhFragil(fragil);
+                
             }
             else
                 JOptionPane.showMessageDialog(this, "Os campos para cálculo do valor devem ser numéricos.");
@@ -466,7 +479,14 @@ public class ItemRegister extends javax.swing.JPanel {
     }//GEN-LAST:event_calculaBtnActionPerformed
 
     private void addItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemBtnActionPerformed
+        if(itemCriado == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faça o cálculo primeiro.");
+            return;
+
+        }
         this.itens.addElement(itemCriado);
+        valorTotalServicoLbl.setText("R$ " + Math.round(valorServico * 100.0) / 100.0);
         cleanInfo();
     }//GEN-LAST:event_addItemBtnActionPerformed
 
@@ -494,7 +514,19 @@ public class ItemRegister extends javax.swing.JPanel {
     }//GEN-LAST:event_limpaBtnActionPerformed
 
     private void deleteItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteItemBtnActionPerformed
-        // TODO add your handling code here:
+        int index = listaItens.getSelectedIndex();
+        if(index >= 0 )
+        {
+            listaItens.remove(index);
+            Item removido = itens.remove(index);
+            if(removido != null)
+               valorTotalServicoLbl.setText("R$ " + ((Math.round(valorServico * 100.0) / 100.0) - removido.getValorFrete()));
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "É necessário selecionar um item para remover.");
+        }
+        
     }//GEN-LAST:event_deleteItemBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
@@ -502,7 +534,24 @@ public class ItemRegister extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void finalizaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizaBtnActionPerformed
-        // JShowMessageDialog
+        String CNPJ = FrameApp.getCNPJ();
+        String CPF = FrameApp.getCPF();
+
+        JOptionPane.showMessageDialog(this, "Cliente: " + PlataformaController.get(CNPJ).getNome() + 
+                "\nDestinatário: " + DestinatarioController.get(CPF).getNome() + 
+                "\nValor total: R$" + valorServico);
+        
+        Servico novo = new Servico();
+        novo.setValorTotal(valorServico);
+        novo.setPlataformaId(PlataformaController.get(CNPJ).id);
+        novo.setDestinatarioId(DestinatarioController.get(CPF).id);
+        novo.setStatus(1);
+        novo.setDataCadastro(new Date());
+        
+        if(novo.getPlataformaId() > 0 && novo.getDestinatarioId() > 0)
+            ServicoController.cadastrar(novo);
+        else
+            JOptionPane.showMessageDialog(this, Helpers.Mensagem.ErroCadastroServico());
     }//GEN-LAST:event_finalizaBtnActionPerformed
 
 
@@ -518,7 +567,6 @@ public class ItemRegister extends javax.swing.JPanel {
     private javax.swing.JLabel freteLbl;
     private javax.swing.JLabel impostoLbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
@@ -540,6 +588,7 @@ public class ItemRegister extends javax.swing.JPanel {
     private javax.swing.JTextField profundidadeTxt;
     private javax.swing.JLabel taxaLbl;
     private javax.swing.JLabel totalLbl;
+    private javax.swing.JLabel valorTotalServicoLbl;
     private javax.swing.JTextField valorTxt;
     private javax.swing.JLabel volumeLbl;
     // End of variables declaration//GEN-END:variables

@@ -15,12 +15,35 @@ public class FrameApp extends javax.swing.JFrame {
     private static JScrollPane scrollPanel;
     private static CardLayout manager;
     private static HashMap<String, JPanel> panelsTable;
+    private static String CNPJ;
+    private static String CPF;
+    
     
     public FrameApp() {
         initComponents();
         myInitComponents();
     }
 
+    public static void setCNPJ(String cnpj)
+    {
+        CNPJ = cnpj;
+    }
+    
+    public static String getCNPJ()
+    {
+        return CNPJ;
+    }
+    
+    public static void setCPF(String cpf)
+    {
+        CPF = cpf;
+    }
+    
+    public static String getCPF()
+    {
+        return CPF;
+    }
+    
     public void myInitComponents()
     {
         panelsTable = new HashMap<>();

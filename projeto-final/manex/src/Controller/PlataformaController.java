@@ -14,8 +14,8 @@ public class PlataformaController
             if(plataforma == null)
                 return false;
             
-            if(!plataforma.ehValido())
-                return false;
+            //if(!plataforma.ehValido())
+                //return false;
             
             if(!Verificador.ehCNPJ(plataforma.getDocumento()))
                 return false;

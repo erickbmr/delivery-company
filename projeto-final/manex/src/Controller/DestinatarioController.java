@@ -15,8 +15,8 @@ public class DestinatarioController
             if(destinatario == null)
                 return false;
             
-            if(!destinatario.ehValido())
-                return false;
+            //if(!destinatario.ehValido())
+                //return false;
             
             if(!Verificador.ehCPF(destinatario.getDocumento()))
                 return false;
@@ -30,6 +30,27 @@ public class DestinatarioController
             new Log(destinatario, Helpers.Mensagem.ErroCadastroDestinatario(), ex.getMessage()).print();
             return false;
         }
+    }
+    
+    public static Destinatario get(String CPF)
+    {
+     try
+        {
+            if(CPF.isBlank())
+                return null;
+            
+            if(!Verificador.ehCPF(CPF))
+                return null;
+            
+            DestinatarioDAO dao = new DestinatarioDAO();
+            
+            return dao.get(CPF);
+        }
+        catch(Exception ex)
+        {
+            new Log(CPF, Helpers.Mensagem.ErroRecuperarDestinatario(), ex.getMessage()).print();
+            return null;
+        }   
     }
     
     public static Destinatario get(int id)

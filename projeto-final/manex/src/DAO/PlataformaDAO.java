@@ -113,24 +113,26 @@ public class PlataformaDAO
             
             statement.execute();
             
-            ResultSet result = statement.getResultSet();
-            
-            result.next();
             plataforma = new PlataformaCliente();
-            plataforma.id = result.getInt("id");
-            plataforma.setTelefone(result.getString("telefone"));
-            plataforma.setCategoria(result.getInt("categoria_id"));
-            plataforma.setDocumento(result.getString("documento"));
-            plataforma.setRua(result.getString("rua"));
-            plataforma.setBairro(result.getString("bairro"));
-            plataforma.setNumero(result.getInt("numero"));
-            plataforma.setCidade(result.getString("cidade"));
-            plataforma.setEstado(result.getString("estado"));
-            plataforma.setNome(result.getString("nome"));
-
-
             
-            return plataforma;
+            ResultSet result = statement.getResultSet();
+            if(result.next())
+            {
+                plataforma.id = result.getInt("id");
+                plataforma.setTelefone(result.getString("telefone"));
+                plataforma.setCategoria(result.getInt("categoria_id"));
+                plataforma.setDocumento(result.getString("documento"));
+                plataforma.setRua(result.getString("rua"));
+                plataforma.setBairro(result.getString("bairro"));
+                plataforma.setNumero(result.getInt("numero"));
+                plataforma.setCidade(result.getString("cidade"));
+                plataforma.setEstado(result.getString("estado"));
+                plataforma.setNome(result.getString("nome"));
+                return plataforma;
+            }
+            else
+                return null;
+
         }
         catch(Exception ex)
         {

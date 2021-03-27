@@ -98,6 +98,43 @@ public class DestinatarioDAO
         }
     }
     
+    public Destinatario get(String CPF)
+    {
+        Destinatario destinatario;
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "SELECT * FROM " + this.nomeTabela + " WHERE documento = ?";
+        
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, CPF);
+            
+            statement.execute();
+            
+            destinatario = new Destinatario();
+            
+            ResultSet result = statement.getResultSet();
+            if(result.next())
+            {
+                destinatario.id = result.getInt("id");
+                destinatario.setNome(result.getString("nome"));
+                destinatario.setRua(result.getString("rua"));
+                destinatario.setBairro(result.getString("bairro"));
+                destinatario.setCep(result.getString("cep"));
+                String estado = Helpers.UnidadeFederativa.getEstado(result.getString("estado"));
+                destinatario.setEstado(estado);
+                destinatario.setNumero(result.getInt("numero"));
+
+                return destinatario;
+            }
+            else
+                return null;
+        }
+        catch(Exception ex)
+        {
+            new Log(CPF, "DAO: " + Helpers.Mensagem.ErroRecuperarDestinatario(), ex.getMessage()).print();
+            return null;
+        }
+    }
     //Get unico
     public Destinatario get(int id)
     {

@@ -293,6 +293,7 @@ public class Home extends javax.swing.JPanel {
             totalPedidosLbl.setText(listaServicos.size() + "");
             totalPostadosLbl.setText(postados + "");
             totalRotaLbl.setText(emRota + "");
+            plataforma = new PlataformaCliente();
         }
         catch(Exception ex)
         {
@@ -314,6 +315,7 @@ public class Home extends javax.swing.JPanel {
             idPlataforma = plataforma.id;
             JOptionPane.showMessageDialog(this, Helpers.Mensagem.PlataformaEncontrada() +
                     "\nRazão Social: " + plataforma.getNome());
+            FrameApp.setCNPJ(plataforma.getDocumento());
             FrameApp.changePanel(new ReceiverRegister(), "registroDestinatario");
         }
         else
