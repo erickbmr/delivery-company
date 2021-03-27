@@ -229,6 +229,27 @@ public class ServicoDAO
         }
     }
     
+    public boolean changeStatus(int id, int status)
+    {
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "UPDATE servico SET status = ? WHERE id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            
+            statement.setInt(1, status);
+            statement.setInt(2, id);
+            
+            int affectedRows = statement.executeUpdate();
+            return this.affectARow(affectedRows);
+        }
+        catch(Exception ex)
+        {
+            new Log(status, "DAO: " + Helpers.Mensagem.ErroMudarStatus(), ex.getMessage()).print();
+            return false;
+        }
+    }
+    
     //retorna se alguma linha foi afetada
     private boolean affectARow(int affectedRows)
     {

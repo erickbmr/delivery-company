@@ -27,16 +27,20 @@ public class Mensagem
     public static String SucessoRecuperarListaItem (){return "Itens encontrados.";}
     
     //Plataformas
-    public static String ErroCadastroPlataforma () {return "Erro ao cadastrar esse plataforma.";}
+    public static String ErroCadastroPlataforma () {return "Erro ao cadastrar essa plataforma.";}
     public static String SucessoCadastroPlataforma () {return "Plataforma cadastrado com sucesso.";}
-    public static String ErroEditarPlataforma () {return "Erro ao editar esse plataforma.";}
+    public static String ErroEditarPlataforma () {return "Erro ao editar essa plataforma.";}
     public static String SucessoEditarPlataforma () {return "Plataforma editado com sucesso.";}
-    public static String ErroRemoverPlataforma (){return "Erro ao remover esse plataforma.";}
+    public static String ErroRemoverPlataforma (){return "Erro ao remover essa plataforma.";}
     public static String SucessoRemoverPlataforma () {return "Plataforma removido com sucesso.";}
-    public static String ErroRecuperarPlataforma (){return "Erro ao recuperar esse plataforma.";}
+    public static String ErroRecuperarPlataforma (){return "Erro ao recuperar essa plataforma.";}
     public static String SucessoRecuperarPlataforma () {return "Plataforma encontrado.";}
     public static String ErroRecuperarListaPlataforma (){return "Erro ao recuperar a lista de plataformas.";}
     public static String SucessoRecuperarListaPlataforma () {return "Plataformas encontradas.";}
+    public static String PlataformaNaoEncontrada () {return "Plataforma não encontrada.";}
+    public static String PlataformaEncontrada () {return "Plataforma encontrada.";}
+
+
     
     //Servicos
     public static String ErroCadastroServico () { return "Erro ao cadastrar esse serviço.";}
@@ -49,6 +53,8 @@ public class Mensagem
     public static String SucessoRecuperarServico (){ return "Serviço encontrado.";}
     public static String ErroRecuperarListaServico () { return "Erro ao recuperar a lista de serviços.";}
     public static String SucessoRecuperarListaServico (){ return "Serviços encontrados.";}
+    public static String ErroMudarStatus (){ return "Erro ao mudar o status de um serviço.";}
+
     
     //Deposito
     public static String ErroCadastroDeposito () { return "Erro ao cadastrar esse deposito.";}

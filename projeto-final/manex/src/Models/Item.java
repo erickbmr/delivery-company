@@ -99,4 +99,10 @@ public class Item
                 this.volume > 0 && this.valorItem > 0 && this.valorFrete > 0 &&
                 this.depositoId > 0 && this.servicoId > 0;
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.descricao + " - R$" + this.valorFrete;
+    }
 }

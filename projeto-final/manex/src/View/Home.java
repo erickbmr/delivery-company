@@ -5,21 +5,21 @@
  */
 package View;
 
+import Controller.PlataformaController;
 import Controller.ServicoController;
 import Helpers.Log;
+import Models.PlataformaCliente;
 import Models.Servico;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Erick
- */
+
 public class Home extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Home
-     */
+    private static int idPlataforma;
+    private static PlataformaCliente plataforma;
+    private static String cnpj;
+
     
     public Home() {
         initComponents();
@@ -305,11 +305,22 @@ public class Home extends javax.swing.JPanel {
     }//GEN-LAST:event_listaBtnActionPerformed
 
     private void cadastroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroBtnActionPerformed
-        String cnpj = JOptionPane.showInputDialog("Insira o CNPJ da Plataforma");
+        cnpj = JOptionPane.showInputDialog("Insira o CNPJ da Plataforma");
         //busca se existe o CNPJ
-        //se sim, basta direcionar para o destinatário.
-        FrameApp.changePanel(new ClientRegister(), "registroPlataforma");
-        //se não, basta direcionar para o cadastro de Plataforma.
+        plataforma = PlataformaController.get(cnpj);
+        
+        if(plataforma != null)
+        {
+            idPlataforma = plataforma.id;
+            JOptionPane.showMessageDialog(this, Helpers.Mensagem.PlataformaEncontrada() +
+                    "\nRazão Social: " + plataforma.getNome());
+            FrameApp.changePanel(new ReceiverRegister(), "registroDestinatario");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, Helpers.Mensagem.PlataformaNaoEncontrada());
+            FrameApp.changePanel(new ClientRegister(), "registroPlataforma");
+        }
     }//GEN-LAST:event_cadastroBtnActionPerformed
 
     private void mudaStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mudaStatusBtnActionPerformed

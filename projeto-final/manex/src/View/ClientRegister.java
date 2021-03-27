@@ -11,9 +11,8 @@ package View;
  */
 public class ClientRegister extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ClientRegister
-     */
+    private static String CNPJ;
+    
     public ClientRegister() {
         initComponents();
     }

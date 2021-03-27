@@ -5,15 +5,18 @@
  */
 package View;
 
+import Models.Destinatario;
+
 /**
  *
  * @author Erick
  */
 public class ReceiverRegister extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ReceiverRegister
-     */
+    private static Destinatario destinatario;
+    private static int idDestinatario;
+    private static int idServico;
+       
     public ReceiverRegister() {
         initComponents();
     }
@@ -116,6 +119,11 @@ public class ReceiverRegister extends javax.swing.JPanel {
         });
 
         limpaBtn.setText("Limpar");
+        limpaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpaBtnActionPerformed(evt);
+            }
+        });
 
         continuarBtn.setText("Continuar");
         continuarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +243,17 @@ public class ReceiverRegister extends javax.swing.JPanel {
     private void cidadeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadeBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cidadeBoxActionPerformed
+
+    private void limpaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpaBtnActionPerformed
+        nomeTxt.setText("");
+        cpfTxt.setText("");
+        ruaTxt.setText("");
+        bairroTxt.setText("");
+        numeroTxt.setText("");
+        complementoTxt.setText("");
+        cepTxt.setText("");
+        destinatario = new Destinatario();
+    }//GEN-LAST:event_limpaBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

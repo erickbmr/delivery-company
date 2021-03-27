@@ -22,7 +22,7 @@ public class PlataformaDAO
     {
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO " + this.nomeTabela + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
@@ -35,7 +35,7 @@ public class PlataformaDAO
             statement.setString(7, p.getCidade());
             String estado = Helpers.UnidadeFederativa.getUF(p.getEstado());
             statement.setString(8, estado);
-
+            statement.setString(9, p.getNome());
 
             int affectedRows = statement.executeUpdate();
             
@@ -106,7 +106,7 @@ public class PlataformaDAO
 
         try(Connection connection = ConnectionDB.getConnection())
         {
-            String query = "SELECT * FROM " + this.nomeTabela + " WHERE documento = '?'";
+            String query = "SELECT * FROM " + this.nomeTabela + " WHERE documento = ?";
             
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, CNPJ);
@@ -118,14 +118,16 @@ public class PlataformaDAO
             result.next();
             plataforma = new PlataformaCliente();
             plataforma.id = result.getInt("id");
-            plataforma.setDocumento(result.getString("documento"));
             plataforma.setTelefone(result.getString("telefone"));
             plataforma.setCategoria(result.getInt("categoria_id"));
+            plataforma.setDocumento(result.getString("documento"));
             plataforma.setRua(result.getString("rua"));
             plataforma.setBairro(result.getString("bairro"));
             plataforma.setNumero(result.getInt("numero"));
             plataforma.setCidade(result.getString("cidade"));
             plataforma.setEstado(result.getString("estado"));
+            plataforma.setNome(result.getString("nome"));
+
 
             
             return plataforma;
@@ -162,6 +164,8 @@ public class PlataformaDAO
             plataforma.setNumero(result.getInt("numero"));
             plataforma.setCidade(result.getString("cidade"));
             plataforma.setEstado(result.getString("estado"));
+            plataforma.setNome(result.getString("nome"));
+
 
             return plataforma;
         }
@@ -198,6 +202,7 @@ public class PlataformaDAO
                 plataforma.setNumero(result.getInt("numero"));
                 plataforma.setCidade(result.getString("cidade"));
                 plataforma.setEstado(result.getString("estado"));
+                plataforma.setNome(result.getString("nome"));
                 plataformas.add(plataforma);
             }
             

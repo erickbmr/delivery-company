@@ -106,4 +106,22 @@ public class ServicoController
             return false;
         }
     }
+    
+    public static boolean changeStatus(int id, int status)
+    {
+        try
+        {
+            if(id <= 0 || status <= 0)
+                return false;
+            
+            ServicoDAO dao = new ServicoDAO();
+            
+            return dao.changeStatus(id, status);
+        }
+        catch(Exception ex)
+        {
+            new Log(id, Helpers.Mensagem.ErroMudarStatus(), ex.getMessage()).print();
+            return false;
+        }
+    }
 }
