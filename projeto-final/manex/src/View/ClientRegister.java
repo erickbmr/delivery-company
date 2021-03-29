@@ -5,7 +5,9 @@
  */
 package View;
 
+import Controller.DestinatarioController;
 import Controller.PlataformaController;
+import Models.Destinatario;
 import Models.PlataformaCliente;
 import javax.swing.JOptionPane;
 
@@ -25,6 +27,8 @@ public class ClientRegister extends javax.swing.JPanel {
     public void myInitComponents()
     {
         plataforma = new PlataformaCliente();
+        if(FrameApp.getCNPJ() != null || !FrameApp.getCNPJ().isBlank())
+            cnpjTxt.setText(FrameApp.getCNPJ());
     }
     
     @SuppressWarnings("unchecked")
@@ -267,6 +271,26 @@ public class ClientRegister extends javax.swing.JPanel {
             if(PlataformaController.cadastrar(plataforma))
             {
                 FrameApp.setCNPJ(cnpj);
+                
+                Destinatario destinatario = new Destinatario();
+                String cpf = JOptionPane.showInputDialog("Insira o CPF do destinatário");
+                cpf = cpf.trim();
+                if(!cpf.isBlank())
+                    destinatario = DestinatarioController.get(cpf);
+
+                if(destinatario != null)
+                {
+                    JOptionPane.showMessageDialog(this, Helpers.Mensagem.SucessoRecuperarDestinatario() +
+                            "\nNome: " + destinatario.getNome());
+                    FrameApp.setCPF(destinatario.getDocumento());
+                    FrameApp.changePanel(new ItemRegister(), "registroItens");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, Helpers.Mensagem.ErroRecuperarDestinatario());
+                    FrameApp.setCPF(cpf);
+                    FrameApp.changePanel(new ReceiverRegister(), "registroDestinatario");
+                }
                 FrameApp.changePanel(new ReceiverRegister(), "registroDestinatario");
             }
             else

@@ -117,13 +117,14 @@ public class DestinatarioDAO
             {
                 destinatario.id = result.getInt("id");
                 destinatario.setNome(result.getString("nome"));
+                destinatario.setDocumento(result.getString("documento"));
                 destinatario.setRua(result.getString("rua"));
                 destinatario.setBairro(result.getString("bairro"));
                 destinatario.setCep(result.getString("cep"));
                 String estado = Helpers.UnidadeFederativa.getEstado(result.getString("estado"));
                 destinatario.setEstado(estado);
                 destinatario.setNumero(result.getInt("numero"));
-
+                
                 return destinatario;
             }
             else

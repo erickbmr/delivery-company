@@ -41,7 +41,7 @@ public class DestinatarioController
             
             if(!Verificador.ehCPF(CPF))
                 return null;
-            
+
             DestinatarioDAO dao = new DestinatarioDAO();
             
             return dao.get(CPF);

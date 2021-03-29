@@ -12,9 +12,8 @@ public class ServicoController
         {
             if(servico == null)
                 return false;
-            
-            if(!servico.ehValido())
-                return false;
+            //if(!servico.ehValido())
+                //return false;
             
             ServicoDAO dao = new ServicoDAO();
             
@@ -54,6 +53,7 @@ public class ServicoController
     {
         try
         {
+            
             ServicoDAO dao = new ServicoDAO();
             
             return dao.getAll();

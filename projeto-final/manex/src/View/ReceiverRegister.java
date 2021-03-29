@@ -27,6 +27,8 @@ public class ReceiverRegister extends javax.swing.JPanel {
     public void myInitComponents()
     {
         destinatario = new Destinatario();
+        if(FrameApp.getCPF() != null || !FrameApp.getCPF().isBlank())
+            cpfTxt.setText(FrameApp.getCPF());
     }
     
     @SuppressWarnings("unchecked")

@@ -29,12 +29,17 @@ public class ServicoDAO
             
             statement.setDouble(1, s.getValorTotal());
             statement.setInt(2, s.getPrazoEmDias());
-            Date dataSql = (Date)s.getDataLimite(); //cast sql date > util date
-            statement.setDate(3, dataSql);
-            dataSql = (Date)s.getDataCadastro(); //cast sql date > util date
-            statement.setDate(4, dataSql);
-            dataSql = (Date)s.getDataAgendada(); //cast sql date > util date
-            statement.setDate(5, dataSql);
+            //Date dataSql = (Date)s.getDataLimite(); //cast sql date > util date
+            //Date.valueOf(s.getDataLimite().toString());
+            statement.setDate(3, Date.valueOf(s.getDataLimiteString()));
+            //dataSql = (Date)s.getDataCadastro(); //cast sql date > util date
+            statement.setDate(4, Date.valueOf(s.getDataCadastroString()));
+            //dataSql = (Date)s.getDataAgendada(); //cast sql date > util date
+            if(s.getDataAgendadaString() != null)
+                statement.setDate(5, Date.valueOf(s.getDataAgendadaString()));
+            else
+                statement.setDate(5, null);
+
             statement.setInt(6, s.getDestinatarioId());
             statement.setInt(7, s.getPlataformaId());
             statement.setInt(8, s.getFuncionarioId());
@@ -124,20 +129,25 @@ public class ServicoDAO
             
             ResultSet result = statement.getResultSet();
             
-            result.next();
-            servico = new Servico();
-            servico.id = result.getInt("id");
-            servico.setValorTotal(result.getDouble("valor_total_frete"));
-            servico.setPrazoEmDias(result.getInt("prazo_dias"));
-            servico.setDataLimite((Date)result.getDate("data_limite"));
-            servico.setDataCadastro((Date)result.getDate("data_cadastro"));
-            servico.setDataAgendada((Date)result.getDate("data_agendada"));
-            servico.setDestinatarioId(result.getInt("destinatario_id"));
-            servico.setPlataformaId(result.getInt("plataforma_id"));
-            servico.setFuncionarioId(result.getInt("funcionario_id"));
-            servico.setStatus(result.getInt("status"));
-            
-            return servico;
+            if(result.next())
+            {
+                servico = new Servico();
+                servico.id = result.getInt("id");
+                servico.setValorTotal(result.getDouble("valor_total_frete"));
+                servico.setPrazoEmDias(result.getInt("prazo_dias"));
+                //servico.setDataLimite((Date)result.getDate("data_limite"));
+                servico.setDataCadastroString(result.getDate("data_cadastro").toString());
+                //servico.setDataCadastro((Date)result.getDate("data_cadastro"));
+                servico.setDataAgendadaString(result.getDate("data_agendada").toString());
+                //servico.setDataAgendada((Date)result.getDate("data_agendada"));
+                servico.setDestinatarioId(result.getInt("destinatario_id"));
+                servico.setPlataformaId(result.getInt("plataforma_id"));
+                servico.setFuncionarioId(result.getInt("funcionario_id"));
+                servico.setStatus(result.getInt("status"));
+                return servico;
+            }
+            else
+                return servico;
         }
         catch(SQLException ex)
         {
@@ -167,9 +177,13 @@ public class ServicoDAO
                 servico.id = result.getInt("id");
                 servico.setValorTotal(result.getDouble("valor_total_frete"));
                 servico.setPrazoEmDias(result.getInt("prazo_dias"));
-                servico.setDataLimite((Date)result.getDate("data_limite"));
-                servico.setDataCadastro((Date)result.getDate("data_cadastro"));
-                servico.setDataAgendada((Date)result.getDate("data_agendada"));
+                //servico.setDataLimite((Date)result.getDate("data_limite"));
+                servico.setDataCadastroString(result.getDate("data_cadastro").toString());
+                //servico.setDataCadastro((Date)result.getDate("data_cadastro"));
+                Date data = result.getDate("data_agendada");
+                if(data != null)
+                    servico.setDataAgendadaString(data.toString());
+                //servico.setDataAgendada((Date)result.getDate("data_agendada"));
                 servico.setDestinatarioId(result.getInt("destinatario_id"));
                 servico.setPlataformaId(result.getInt("plataforma_id"));
                 servico.setFuncionarioId(result.getInt("funcionario_id"));

@@ -1,8 +1,9 @@
 package Models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Vector;
 
 public class Servico 
 {
@@ -13,14 +14,21 @@ public class Servico
     private int prazoEmDias;
     private double valorTotal;
     private Date dataLimite;
+    private String dataLimiteString;
     private Date dataCadastro;
+    private String dataCadastroString;
     private Date dataAgendada;
+    private String dataAgendadaString;
     private int status;
+    private String pattern;
+    private SimpleDateFormat dateFormat;
     
     public Servico()
     {
         this.dataCadastro = new Date();
         this.dataAgendada = null;
+        this.pattern = "yyyy-MM-dd";
+        this.dateFormat = new SimpleDateFormat(this.pattern);
     }
 
     public int getStatus() {
@@ -45,6 +53,20 @@ public class Servico
         return dataCadastro;
     }
 
+    public String getDataLimiteString() {
+        return dataLimiteString;
+    }
+
+    public String getDataCadastroString() {
+        return dataCadastroString;
+    }
+
+    public String getDataAgendadaString() {
+        return dataAgendadaString;
+    }
+    
+    
+    
     public Date getDataAgendada() {
         return dataAgendada;
     }
@@ -59,10 +81,12 @@ public class Servico
 
     public void setDataLimite(Date dataLimite) {
         this.dataLimite = dataLimite;
+        this.dataLimiteString = this.dateFormat.format(dataLimite);
     }
 
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
+        this.dataCadastroString = this.dateFormat.format(dataCadastro);
     }
 
     
@@ -90,32 +114,49 @@ public class Servico
     public double getValorTotal() {
         return valorTotal;
     }
+
+    public void setDataLimiteString(String dataLimiteString) {
+        this.dataLimiteString = dataLimiteString;
+    }
+
+    public void setDataCadastroString(String dataCadastroString) {
+        this.dataCadastroString = dataCadastroString;
+    }
+
+    public void setDataAgendadaString(String dataAgendadaString) {
+        this.dataAgendadaString = dataAgendadaString;
+    }
+    
+    
     
     public void setDataAgendada(Date dataAgendada) {
         this.dataAgendada = dataAgendada;
+        this.dataAgendadaString = this.dateFormat.format(dataAgendada);
     }
     
     public void setPrazoEmDias(int prazoEmDias) {
         this.prazoEmDias = prazoEmDias;
+        this.setDataLimite();
     }
 
-    private boolean setDataLimite(int dias)
+    private boolean setDataLimite()
     {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(this.dataCadastro);
-        
         //2 dias para descontar sábado e domingo
-        calendar.add(Calendar.DATE, dias + 2);
-        
+        calendar.add(Calendar.DATE, this.prazoEmDias + 2);
+
         this.dataLimite = calendar.getTime();
-        return false;
+
+        this.dataLimiteString = this.dateFormat.format(this.dataLimite);
+        return true;
     }
     
     public boolean ehValido()
     {
-        Date hoje = new Date();
+        Date hoje = Calendar.getInstance().getTime();
         return this.valorTotal > 0 && this.prazoEmDias > 0 && 
-                this.dataLimite.after(hoje) && this.dataAgendada.after(hoje) &&
+                this.dataLimite.after(hoje) &&
                 this.destinatarioId > 0 && this.plataformaId > 0 &&
                 this.funcionarioId > 0;
     }

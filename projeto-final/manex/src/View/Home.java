@@ -5,9 +5,11 @@
  */
 package View;
 
+import Controller.DestinatarioController;
 import Controller.PlataformaController;
 import Controller.ServicoController;
 import Helpers.Log;
+import Models.Destinatario;
 import Models.PlataformaCliente;
 import Models.Servico;
 import java.util.ArrayList;
@@ -18,8 +20,9 @@ public class Home extends javax.swing.JPanel {
 
     private static int idPlataforma;
     private static PlataformaCliente plataforma;
+    private static Destinatario destinatario;
     private static String cnpj;
-
+    private static String cpf;
     
     public Home() {
         initComponents();
@@ -51,6 +54,7 @@ public class Home extends javax.swing.JPanel {
         totalEntregueLbl = new javax.swing.JLabel();
         totalOcorrenciaLbl = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        refreshBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(735, 445));
@@ -156,6 +160,15 @@ public class Home extends javax.swing.JPanel {
 
         jLabel10.setText("______________________________________________________________________________________________________");
 
+        refreshBtn.setBackground(new java.awt.Color(255, 255, 255));
+        refreshBtn.setIcon(new javax.swing.ImageIcon("D:\\Facul\\4º Período\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\refresh.png")); // NOI18N
+        refreshBtn.setToolTipText("");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,10 +182,9 @@ public class Home extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(153, 153, 153))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
+                                .addGap(88, 88, 88)
+                                .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,14 +221,17 @@ public class Home extends javax.swing.JPanel {
                                         .addComponent(jLabel5)
                                         .addGap(18, 18, 18)
                                         .addComponent(totalPostadosLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -249,7 +264,7 @@ public class Home extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(totalOcorrenciaLbl))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -258,42 +273,48 @@ public class Home extends javax.swing.JPanel {
         try
         {
             ArrayList<Servico> listaServicos = ServicoController.getAll();
-            double valorTotal = 0;
-            int postados = 0, alocacao = 0, emRota = 0, entregues = 0, problema = 0;
-            for(Servico s : listaServicos)
+            if(listaServicos != null)
             {
-                valorTotal += s.getValorTotal();
-                switch(s.getStatus())
+                double valorTotal = 0;
+                int postados = 0, alocacao = 0, emRota = 0, entregues = 0, problema = 0;
+                for(Servico s : listaServicos)
                 {
-                    case 1: 
-                        postados++;
-                    break;
-                    case 2: 
-                        alocacao++;
-                    break;
-                    case 3: 
-                        emRota++;
-                    break;
-                    case 4: 
-                        entregues++;
-                    break;
-                    case 5: 
-                        problema++;
-                    break;
-                    default: 
-                        problema++;
-                    break;
+                    valorTotal += s.getValorTotal();
+                    switch(s.getStatus())
+                    {
+                        case 1: 
+                            postados++;
+                        break;
+                        case 2: 
+                            alocacao++;
+                        break;
+                        case 3: 
+                            emRota++;
+                        break;
+                        case 4: 
+                            entregues++;
+                        break;
+                        case 5: 
+                            problema++;
+                        break;
+                        default: 
+                            problema++;
+                        break;
+                    }
                 }
+
+                valorTotalLbl.setText("R$" + Math.round(valorTotal * 100.0) / 100.0);
+                totalAlocacaoLbl.setText(alocacao + "");
+                totalEntregueLbl.setText(entregues + "");
+                totalOcorrenciaLbl.setText(problema + "");
+                totalPedidosLbl.setText(listaServicos.size() + "");
+                totalPostadosLbl.setText(postados + "");
+                totalRotaLbl.setText(emRota + "");
+                plataforma = new PlataformaCliente();
             }
-            
-            valorTotalLbl.setText("R$" + valorTotal);
-            totalAlocacaoLbl.setText(alocacao + "");
-            totalEntregueLbl.setText(entregues + "");
-            totalOcorrenciaLbl.setText(problema + "");
-            totalPedidosLbl.setText(listaServicos.size() + "");
-            totalPostadosLbl.setText(postados + "");
-            totalRotaLbl.setText(emRota + "");
-            plataforma = new PlataformaCliente();
+            else
+                new Log(null, Helpers.Mensagem.ErroRecuperarListaServico(), "ArrayList is null").print();
+
         }
         catch(Exception ex)
         {
@@ -307,8 +328,10 @@ public class Home extends javax.swing.JPanel {
 
     private void cadastroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroBtnActionPerformed
         cnpj = JOptionPane.showInputDialog("Insira o CNPJ da Plataforma");
+        cnpj = cnpj.trim();
         //busca se existe o CNPJ
-        plataforma = PlataformaController.get(cnpj);
+        if(!cnpj.isBlank())
+            plataforma = PlataformaController.get(cnpj);
         
         if(plataforma != null)
         {
@@ -316,11 +339,30 @@ public class Home extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, Helpers.Mensagem.PlataformaEncontrada() +
                     "\nRazão Social: " + plataforma.getNome());
             FrameApp.setCNPJ(plataforma.getDocumento());
-            FrameApp.changePanel(new ReceiverRegister(), "registroDestinatario");
+            
+            cpf = JOptionPane.showInputDialog("Insira o CPF do destinatário");
+            cpf = cpf.trim();
+            if(!cpf.isBlank())
+                destinatario = DestinatarioController.get(cpf);
+            
+            if(destinatario != null)
+            {
+                JOptionPane.showMessageDialog(this, Helpers.Mensagem.SucessoRecuperarDestinatario() +
+                        "\nNome: " + destinatario.getNome());
+                FrameApp.setCPF(destinatario.getDocumento());
+                FrameApp.changePanel(new ItemRegister(), "registroItens");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, Helpers.Mensagem.ErroRecuperarDestinatario());
+                FrameApp.setCPF(cpf);
+                FrameApp.changePanel(new ReceiverRegister(), "registroDestinatario");
+            }
         }
         else
         {
             JOptionPane.showMessageDialog(this, Helpers.Mensagem.PlataformaNaoEncontrada());
+            FrameApp.setCNPJ(cnpj);
             FrameApp.changePanel(new ClientRegister(), "registroPlataforma");
         }
     }//GEN-LAST:event_cadastroBtnActionPerformed
@@ -328,6 +370,10 @@ public class Home extends javax.swing.JPanel {
     private void mudaStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mudaStatusBtnActionPerformed
         FrameApp.changePanel(new ServiceList(), "servicos");
     }//GEN-LAST:event_mudaStatusBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        myInitComponents();
+    }//GEN-LAST:event_refreshBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -345,6 +391,7 @@ public class Home extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton listaBtn;
     private javax.swing.JButton mudaStatusBtn;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JLabel totalAlocacaoLbl;
     private javax.swing.JLabel totalEntregueLbl;
     private javax.swing.JLabel totalOcorrenciaLbl;

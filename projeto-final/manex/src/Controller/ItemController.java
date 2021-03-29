@@ -13,8 +13,8 @@ public class ItemController
             if(item == null)
                 return false;
             
-            if(!item.ehValido())
-                return false;
+            //if(!item.ehValido())
+                //return false;
             
             ItemDAO dao = new ItemDAO();
             

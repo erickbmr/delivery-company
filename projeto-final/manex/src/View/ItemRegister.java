@@ -12,6 +12,7 @@ import Controller.ServicoController;
 import Models.Item;
 import Models.Servico;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -21,6 +22,7 @@ public class ItemRegister extends javax.swing.JPanel {
     private static Item itemCriado;
     private DefaultListModel<Item> itens;
     private static double valorServico;
+    private int idServico;
     
     public ItemRegister() {
         initComponents();
@@ -467,7 +469,7 @@ public class ItemRegister extends javax.swing.JPanel {
                 itemCriado.setValorItem(valorItem);
                 itemCriado.setVolume(volume);
                 itemCriado.setEhFragil(fragil);
-                
+                itemCriado.setDepositoId(1);
             }
             else
                 JOptionPane.showMessageDialog(this, "Os campos para cálculo do valor devem ser numéricos.");
@@ -519,6 +521,7 @@ public class ItemRegister extends javax.swing.JPanel {
         {
             listaItens.remove(index);
             Item removido = itens.remove(index);
+            this.itens.remove(index);
             if(removido != null)
                valorTotalServicoLbl.setText("R$ " + ((Math.round(valorServico * 100.0) / 100.0) - removido.getValorFrete()));
         }
@@ -539,22 +542,56 @@ public class ItemRegister extends javax.swing.JPanel {
 
         JOptionPane.showMessageDialog(this, "Cliente: " + PlataformaController.get(CNPJ).getNome() + 
                 "\nDestinatário: " + DestinatarioController.get(CPF).getNome() + 
-                "\nValor total: R$" + valorServico);
+                "\nValor total: R$" + Math.round(valorServico * 100.0)/100.0);
+        
         
         Servico novo = new Servico();
-        novo.setValorTotal(valorServico);
+        novo.setValorTotal(Math.round(valorServico * 100.0)/100.0);
+        novo.setPrazoEmDias(14); //alterar depois
         novo.setPlataformaId(PlataformaController.get(CNPJ).id);
         novo.setDestinatarioId(DestinatarioController.get(CPF).id);
-        novo.setStatus(1);
-        novo.setDataCadastro(new Date());
+        novo.setFuncionarioId(2);//alterar depois
+        novo.setStatus(1);//alterar depois
+        novo.setDataCadastro(Calendar.getInstance().getTime());//alterar depois
         
         if(novo.getPlataformaId() > 0 && novo.getDestinatarioId() > 0)
-            ServicoController.cadastrar(novo);
+        {
+            if(ServicoController.cadastrar(novo))
+            {
+                ArrayList servicos = ServicoController.getAll();
+                int totalServicos = servicos.size();
+                Servico ultimoInserido = (Servico)servicos.get(totalServicos - 1);
+                idServico = ultimoInserido.id;
+                cadastraItens();
+                JOptionPane.showMessageDialog(this, Helpers.Mensagem.SucessoCadastroServico());
+                FrameApp.setCNPJ("");
+                FrameApp.setCPF("");
+                FrameApp.changePanel(new Home(), idServico + "");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, Helpers.Mensagem.ErroCadastroServico());
+                FrameApp.setCNPJ("");
+                FrameApp.setCPF("");
+                FrameApp.changePanel(null, "home");
+            }
+ 
+        }
         else
-            JOptionPane.showMessageDialog(this, Helpers.Mensagem.ErroCadastroServico());
+            JOptionPane.showMessageDialog(this, "É necessário uma plataforma e um destinatário para cadastrar o serviço.");
     }//GEN-LAST:event_finalizaBtnActionPerformed
 
-
+    public void cadastraItens()
+    {
+        for(int i = 0; i < this.itens.size(); i++)
+        {
+            Item item = this.itens.elementAt(i);
+            item.setServicoId(idServico);
+            if(!ItemController.cadastrar(item))
+                JOptionPane.showMessageDialog(this, Helpers.Mensagem.ErroCadastroItem() + "\nDescrição: " + item.getDescricao());
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addItemBtn;
     private javax.swing.JTextField alturaTxt;
