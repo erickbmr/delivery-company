@@ -29,6 +29,7 @@ public class ClientRegister extends javax.swing.JPanel {
         plataforma = new PlataformaCliente();
         if(FrameApp.getCNPJ() != null || !FrameApp.getCNPJ().isBlank())
             cnpjTxt.setText(FrameApp.getCNPJ());
+    
     }
     
     @SuppressWarnings("unchecked")
@@ -83,6 +84,8 @@ public class ClientRegister extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Categoria");
 
+        categoriaBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "E-commerce", "Física", "Autônomo" }));
+
         cancelaBtn.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         cancelaBtn.setText("Cancelar");
         cancelaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,9 +130,13 @@ public class ClientRegister extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Estado");
 
+        estadoBox.setEnabled(false);
+
         jLabel11.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Cidade");
+
+        cidadeBox.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -227,7 +234,7 @@ public class ClientRegister extends javax.swing.JPanel {
                     .addComponent(estadoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(cidadeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelaBtn)
                     .addComponent(limpaBtn)
@@ -251,6 +258,7 @@ public class ClientRegister extends javax.swing.JPanel {
         String complemento = complementoTxt.getText();
         int cidade = cidadeBox.getSelectedIndex();
         int estado = estadoBox.getSelectedIndex();
+        int categoriaId = categoriaBox.getSelectedIndex();
         
         if(!nome.isBlank() && !cnpj.isBlank() && !telefone.isBlank() && !endereco.isBlank()
                 && !bairro.isBlank() && !numero.isBlank() && !complemento.isBlank())
@@ -260,7 +268,14 @@ public class ClientRegister extends javax.swing.JPanel {
             plataforma.setTelefone(telefone);
             plataforma.setRua(endereco + " - Complemento: " + complemento);
             plataforma.setBairro(bairro);
-            plataforma.setCategoriaId(2);
+            switch(categoriaId)
+            {
+                case 0: plataforma.setCategoriaId(1);
+                case 1: plataforma.setCategoriaId(2);
+                case 2: plataforma.setCategoriaId(3);
+
+                default: plataforma.setCategoriaId(2);
+            }
             plataforma.setCidade("Belo Horizonte");
             plataforma.setEstado("Minas Gerais");
             if(numero.matches("[0-9]+"))

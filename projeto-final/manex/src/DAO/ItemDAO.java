@@ -66,6 +66,27 @@ public class ItemDAO
         }
     }
     
+    public boolean removerPorServico(int servicoId)
+    {
+        //Método implementado por falta de adicionar um DELETE ON CASCADE na criação da tabela
+        try(Connection connection = ConnectionDB.getConnection())
+        {
+            String query = "DELETE FROM " + this.nomeTabela + " WHERE servico_id = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, servicoId);
+            
+            int affectedRows = statement.executeUpdate();
+            
+            return this.affectARow(affectedRows);
+        }
+        catch(SQLException ex)
+        {
+            new Log(servicoId, "DAO: " + Helpers.Mensagem.ErroRemoverItem(), ex.getMessage()).print();
+            return false;
+        }
+    }
+    
     //Editar
     public boolean editar(Item i, int id)
     {

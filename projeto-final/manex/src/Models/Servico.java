@@ -115,6 +115,11 @@ public class Servico
         return valorTotal;
     }
 
+    public String getValorTotalString()
+    {
+        return "R$ " + this.valorTotal;
+    }
+    
     public void setDataLimiteString(String dataLimiteString) {
         this.dataLimiteString = dataLimiteString;
     }

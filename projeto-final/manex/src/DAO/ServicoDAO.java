@@ -91,12 +91,14 @@ public class ServicoDAO
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setDouble(1, s.getValorTotal());
             statement.setInt(2, s.getPrazoEmDias());
-            Date dataSql = (Date)s.getDataLimite(); //cast sql date > util date
-            statement.setDate(3, dataSql);
-            dataSql = (Date)s.getDataCadastro();
-            statement.setDate(4, dataSql);
-            dataSql = (Date)s.getDataAgendada();
-            statement.setDate(5, dataSql);
+            statement.setDate(3, Date.valueOf(s.getDataLimiteString()));
+            statement.setDate(4, Date.valueOf(s.getDataCadastroString()));
+           
+            if(s.getDataAgendadaString() != null)
+                statement.setDate(5, Date.valueOf(s.getDataAgendadaString()));
+            else
+                statement.setDate(5, null);
+            
             statement.setInt(6, s.getDestinatarioId());
             statement.setInt(7, s.getPlataformaId());
             statement.setInt(8, s.getFuncionarioId());
@@ -138,7 +140,8 @@ public class ServicoDAO
                 //servico.setDataLimite((Date)result.getDate("data_limite"));
                 servico.setDataCadastroString(result.getDate("data_cadastro").toString());
                 //servico.setDataCadastro((Date)result.getDate("data_cadastro"));
-                servico.setDataAgendadaString(result.getDate("data_agendada").toString());
+                if(result.getDate("data_agendada") != null)
+                    servico.setDataAgendadaString(result.getDate("data_agendada").toString());
                 //servico.setDataAgendada((Date)result.getDate("data_agendada"));
                 servico.setDestinatarioId(result.getInt("destinatario_id"));
                 servico.setPlataformaId(result.getInt("plataforma_id"));

@@ -106,4 +106,20 @@ public class ItemController
             return false;
         }
     }
+    
+    public static boolean excluirPorServico(int servicoId)
+    {
+        //Método implementado por falta de adicionar um DELETE ON CASCADE na criação da tabela
+        try
+        {
+            ItemDAO dao = new ItemDAO();
+            
+            return dao.removerPorServico(servicoId);
+        }
+        catch(Exception ex)
+        {
+            new Log(servicoId, Helpers.Mensagem.ErroRemoverItem(), ex.getMessage()).print();
+            return false;
+        }
+    }   
 }

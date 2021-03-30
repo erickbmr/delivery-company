@@ -35,7 +35,6 @@ public class Home extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         cadastroBtn = new javax.swing.JButton();
-        listaBtn = new javax.swing.JButton();
         mudaStatusBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -71,16 +70,6 @@ public class Home extends javax.swing.JPanel {
             }
         });
 
-        listaBtn.setBackground(new java.awt.Color(102, 0, 102));
-        listaBtn.setIcon(new javax.swing.ImageIcon("D:\\Facul\\4º Período\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\list.png")); // NOI18N
-        listaBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        listaBtn.setContentAreaFilled(false);
-        listaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listaBtnActionPerformed(evt);
-            }
-        });
-
         mudaStatusBtn.setBackground(new java.awt.Color(102, 0, 102));
         mudaStatusBtn.setIcon(new javax.swing.ImageIcon("D:\\Facul\\4º Período\\poo2\\delivery-company\\delivery-company\\projeto-final\\docs\\assets\\play.png")); // NOI18N
         mudaStatusBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -95,8 +84,7 @@ public class Home extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cadastroBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(listaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+            .addComponent(cadastroBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
             .addComponent(mudaStatusBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,8 +94,6 @@ public class Home extends javax.swing.JPanel {
                 .addComponent(mudaStatusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cadastroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(listaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -322,10 +308,6 @@ public class Home extends javax.swing.JPanel {
         }
     }
     
-    private void listaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaBtnActionPerformed
-        //TODO
-    }//GEN-LAST:event_listaBtnActionPerformed
-
     private void cadastroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroBtnActionPerformed
         cnpj = JOptionPane.showInputDialog("Insira o CNPJ da Plataforma");
         cnpj = cnpj.trim();
@@ -389,7 +371,6 @@ public class Home extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton listaBtn;
     private javax.swing.JButton mudaStatusBtn;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JLabel totalAlocacaoLbl;
